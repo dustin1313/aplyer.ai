@@ -43,7 +43,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,15,26,0.97
 .logo-name{font-family:'Lato',sans-serif;font-size:26px;font-weight:700;color:var(--green);letter-spacing:-.01em}
 .logo-tag{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);font-family:'Lato',sans-serif}
 .logo-texts{display:flex;flex-direction:column;gap:1px}
-.nav-btn{background:var(--green);color:#000;padding:7px 18px;border-radius:6px;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Lato',sans-serif;letter-spacing:.02em;transition:all .15s}
+.nav-btn{background:var(--green);color:#000;padding:15px 36px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Lato',sans-serif;letter-spacing:.02em;transition:all .15s}
 .nav-btn:hover{background:var(--green2)}
 
 .cover{padding:104px 24px 0;background:var(--bg)}
@@ -234,26 +234,21 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
         <span class="logo-tag">Stop Skipping Jobs</span>
       </div>
     </a>
-    <button class="nav-btn" onclick="document.getElementById('hero-email').focus();window.scrollTo({top:0,behavior:'smooth'})">Join Waitlist →</button>
+    <button class="nav-btn" onclick="document.getElementById('waitlist-form').scrollIntoView({behavior:'smooth'})">Join the Waitlist →</button>
   </div>
 </nav>
 
 <section class="cover">
   <div class="cover-inner">
-    <div class="form-header f1">
+    <div class="form-header f1" style="text-align:center;">
       <div class="app-type" style="text-align:center;font-size:16px;letter-spacing:.15em;margin-bottom:12px;">Job Application — Aplyer.ai</div>
       <h1 class="form-title" style="text-align:center;font-size:clamp(32px,5vw,52px);">Stop <span class="red">skipping</span> jobs.<br>Start <span class="grn">applying</span> to all of them.</h1>
-      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--white2);font-family:'DM Mono',monospace;margin-bottom:8px;margin-top:24px;">YOUR EMAIL ADDRESS</div>
-      <div style="display:flex;background:var(--field);border:1.5px solid var(--border2);border-radius:8px;overflow:hidden;max-width:440px;transition:border-color .2s;margin-bottom:10px" id="hfr">
-        <input type="email" id="hero-email" placeholder="you@email.com" style="flex:1;padding:13px 16px;font-size:14px;font-family:'Lato',sans-serif;background:transparent;border:none;outline:none;color:var(--white)"/>
-        <button onclick="sub1()" style="padding:13px 22px;background:var(--green);color:#000;border:none;font-family:'Lato',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s">Submit Application →</button>
-      </div>
-      <div id="hs" style="display:none;font-size:13px;color:var(--green);font-family:'DM Mono',monospace;margin-bottom:10px;">✓ Application received. We'll be in touch.</div>
-      <div style="font-size:10px;color:var(--white2);font-family:'DM Mono',monospace;margin-bottom:0;">FREE TO JOIN · FOUNDING MEMBER PRICING · NO PRODUCT TO INSTALL YET</div>
-      <div class="applicant-row">
+
+      <button onclick="document.querySelector('.f4').scrollIntoView({behavior:'smooth'})" style="display:inline-block;padding:15px 36px;background:var(--green);color:#000;border:none;border-radius:8px;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.02em;transition:background .15s;margin-top:28px;">What makes Aplyer different →</button>
+      <div class="applicant-row" style="margin-top:28px;">
         <div class="field-mini"><label>Status</label><div class="val green">● Early Access Open</div></div>
-        <div class="field-mini"><label>Platform</label><div class="val">Chrome Extension <span style="font-size:12px;color:#E2E2E2;font-family:'Lato',sans-serif;">— a free add-on that installs into your Chrome browser in 30 seconds. No separate app. No new page. Works invisibly inside the sites you already use.</span></div></div>
         <div class="field-mini"><label>Works on</label><div class="val">Workday · Greenhouse · Lever · LinkedIn · Employer Careers Sites</div></div>
+        <div class="field-mini"><label>Pricing</label><div class="val">Free to join · Founding member pricing at launch</div></div>
       </div>
     </div>
   </div>
@@ -376,12 +371,15 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
 
 
 
-<div class="submit-section">
+<div class="submit-section" id="waitlist-form">
   <div class="submit-block">
     <div class="submit-inner">
       <div class="submit-label" style="font-size:12px;letter-spacing:.18em;">SUBMIT YOUR APPLICATION</div>
       <h2 class="submit-h">Ready to stop skipping?<br>Join the <span class="grn">Aplyer</span> waitlist.</h2>
-      <div class="submit-form" id="cfr"><input type="email" id="c-email" placeholder="your@email.com"/><button onclick="sub2()">Submit Application →</button></div>
+      <div id="cfr">
+        <div class="submit-form" style="margin-bottom:8px;"><input type="email" id="c-email" placeholder="your@email.com"/><button onclick="sub2()">Submit Application &rarr;</button></div>
+        <div class="submit-form" style="margin-top:8px;"><input type="text" id="c-name" placeholder="First name — so I can say hi (optional)" style="flex:1;padding:13px 16px;font-size:15px;font-family:Lato,sans-serif;background:transparent;border:none;outline:none;color:var(--white)"/></div>
+      </div>
       <div class="submit-ok" id="cok">✓ Application received. We'll be in touch.</div>
       <div class="submit-note" style="font-size:13px;color:var(--white2);line-height:1.7;">Early access is open. Founding members get priority access and special pricing when we launch.</div>
     </div>
@@ -411,16 +409,18 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
 
 <script>
 const ML_URL='https://assets.mailerlite.com/jsonp/2384743/forms/188646756795286821/subscribe';
-async function mlSubmit(email){
+async function mlSubmit(email,name){
   const fd=new FormData();
   fd.append('fields[email]',email);
+  if(name) fd.append('fields[name]',name);
   fd.append('ml-submit','1');
   fd.append('anticsrf','true');
   try{await fetch(ML_URL,{method:'POST',body:fd,mode:'no-cors'});}catch(e){}
 }
-function sub1(){const e=document.getElementById('hero-email').value.trim();if(!e||!e.includes('@'))return;mlSubmit(e);document.getElementById('hfr').style.display='none';document.getElementById('hs').style.display='block';}
-function sub2(){const e=document.getElementById('c-email').value.trim();if(!e||!e.includes('@'))return;mlSubmit(e);document.getElementById('cfr').style.display='none';document.getElementById('cok').style.display='block';}
-document.getElementById('hero-email').addEventListener('keydown',e=>{if(e.key==='Enter')sub1()});
+function sub1(){}
+function sub2(){const n=document.getElementById('c-name').value.trim();const e=document.getElementById('c-email').value.trim();if(!e||!e.includes('@'))return;mlSubmit(e,n);document.getElementById('cfr').style.display='none';document.getElementById('cok').style.display='block';}
+// hero form removed - single waitlist form at bottom
+document.getElementById('c-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('c-email').focus()});
 document.getElementById('c-email').addEventListener('keydown',e=>{if(e.key==='Enter')sub2()});
 </script>
 </body>
