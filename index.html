@@ -296,7 +296,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
         <div class="founder-label">A note from the founder</div>
         <div class="founder-name">Dustin Palay</div>
         <div class="founder-title">Former Executive Recruiter — Now Turned Job Seeker at 50</div>
-        <p class="founder-story">My first three years after graduating from an Ivy League university I had three jobs and was constantly going to recruiters as a candidate — just like you — until I decided to see what the other side of the table looked like as a recruiter myself. Those years certainly taught me a lot about the job market. Having to now be back in it as a 50-year-old candidate while starting Aplyer.ai, I can't believe the pain of completing these long, exhausting applications limiting how many I can finish in a day — <strong>this is why I built Aplyer.ai.</strong><br><br>It's not enough to just copy and paste from ChatGPT. Everyone — including the computer screening systems — knows we are using AI. We need a faster way than copying and pasting fifty times a day for each long application question. We need AI that learns how we write and think, comes across like you, as much as humanly possible, to get through all the filters put in place to reject us — <strong>this is why I built Aplyer.ai. For you, and me, and all of us.</strong></p>
+        <p class="founder-story">My first three years after graduating from an Ivy League university I had three jobs and was constantly going to recruiters as a candidate — just like you — until I decided to see what the other side of the table looked like as a recruiter myself. Those years certainly taught me a lot about the job market. Having to now be back in it as a 50-year-old candidate, I experienced firsthand the pain of completing these long, exhausting applications — limiting how many I could finish in a day. I believed in this problem enough to leave the job market entirely and build Aplyer.ai full-time — <strong>this is why I built Aplyer.ai.</strong><br><br>It's not enough to just copy and paste from ChatGPT. Everyone — including the computer screening systems — knows we are using AI. We need a faster way than copying and pasting fifty times a day for each long application question. We need AI that learns how we write and think, comes across like you, as much as humanly possible, to get through all the filters put in place to reject us — <strong>this is why I built Aplyer.ai. For you, and me, and all of us.</strong></p>
       </div>
     </div>
   </div>
@@ -410,10 +410,16 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
 </footer>
 
 <script>
-function sub1(){const e=document.getElementById('hero-email').value.trim();if(!e||!e.includes('@'))return;save(e);document.getElementById('hfr').style.display='none';document.getElementById('hs').style.display='block';}
-function sub2(){const e=document.getElementById('c-email').value.trim();if(!e||!e.includes('@'))return;save(e);document.getElementById('cfr').style.display='none';document.getElementById('cok').style.display='block';}
-function subm(){const e=document.getElementById('m-email').value.trim();if(!e||!e.includes('@'))return;save(e);document.getElementById('mfr').style.display='none';document.getElementById('mok').style.display='block';}
-function save(e){const l=JSON.parse(localStorage.getItem('aplyer_wl')||'[]');if(!l.includes(e)){l.push(e);localStorage.setItem('aplyer_wl',JSON.stringify(l));}}
+const ML_URL='https://assets.mailerlite.com/jsonp/2384743/forms/188646756795286821/subscribe';
+async function mlSubmit(email){
+  const fd=new FormData();
+  fd.append('fields[email]',email);
+  fd.append('ml-submit','1');
+  fd.append('anticsrf','true');
+  try{await fetch(ML_URL,{method:'POST',body:fd,mode:'no-cors'});}catch(e){}
+}
+function sub1(){const e=document.getElementById('hero-email').value.trim();if(!e||!e.includes('@'))return;mlSubmit(e);document.getElementById('hfr').style.display='none';document.getElementById('hs').style.display='block';}
+function sub2(){const e=document.getElementById('c-email').value.trim();if(!e||!e.includes('@'))return;mlSubmit(e);document.getElementById('cfr').style.display='none';document.getElementById('cok').style.display='block';}
 document.getElementById('hero-email').addEventListener('keydown',e=>{if(e.key==='Enter')sub1()});
 document.getElementById('c-email').addEventListener('keydown',e=>{if(e.key==='Enter')sub2()});
 </script>
