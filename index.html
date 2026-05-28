@@ -381,7 +381,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
         <div class="submit-form" style="margin-bottom:8px;"><input type="email" id="c-email" placeholder="your@email.com"/><button onclick="sub2()">Submit Application &rarr;</button></div>
         <div class="submit-form" style="margin-top:8px;"><input type="text" id="c-name" placeholder="First name (optional)" style="flex:1;padding:13px 16px;font-size:15px;font-family:Lato,sans-serif;background:transparent;border:none;outline:none;color:var(--white)"/></div>
       </div>
-      <div class="submit-ok" id="cok"><span style="font-size:22px;">✓</span> You're in. Check your inbox.</div>
+      <div class="submit-ok" id="cok"><span style="font-size:22px;">✓</span> You're in. Check your inbox — including your Promotions folder.</div>
       <div class="submit-note" style="font-size:13px;color:var(--white2);line-height:1.7;">Early access is open. Founding members get priority access and special pricing when we launch.</div>
     </div>
   </div>
@@ -418,7 +418,7 @@ const WELCOME_HTML=(name,email)=>`<div style="font-family:Arial,sans-serif;font-
 <p>As a founding member you get priority access and pricing that will never be offered again.</p>
 <p>If you want to see it work on your own resume before we launch, reply to this email. I'll set up a quick 15-minute call.</p>
 <p>— Dustin Palay<br>Founder, <a href="https://aplyer.ai" style="color:#1DB954">Aplyer.ai</a></p>
-<p style="font-size:13px;color:#888">P.S. If this landed in Promotions, drag it to your Primary inbox so you don't miss updates.</p>
+
 </div>`;
 async function mlSubmit(email,name){
   try{
