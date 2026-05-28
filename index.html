@@ -157,10 +157,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,15,26,0.97
 .submit-h{font-size:clamp(22px,3.5vw,36px);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:10px;color:var(--white)}
 .submit-h .grn{color:var(--green)}
 .submit-sub{font-size:16px;color:var(--white2);line-height:1.75;font-weight:400;margin-bottom:28px;max-width:480px}
-.submit-form{display:flex;max-width:420px;background:var(--bg);border:1.5px solid var(--border2);border-radius:8px;overflow:hidden;transition:border-color .2s}
+.submit-form{display:flex;max-width:420px;background:var(--bg);border:2px solid rgba(255,255,255,0.85);border-radius:8px;overflow:hidden;transition:border-color .2s}
 .submit-form:focus-within{border-color:var(--green)}
 .submit-form input{flex:1;padding:13px 16px;font-size:15px;font-family:'Lato',sans-serif;background:transparent;border:none;outline:none;color:var(--white)}
-.submit-form input::placeholder{color:var(--dim)}
+.submit-form input::placeholder{color:rgba(255,255,255,0.45)}
 .submit-form button{padding:13px 22px;background:var(--green);color:#000;border:none;font-family:'Lato',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;letter-spacing:.02em}
 .submit-form button:hover{background:var(--green2)}
 .submit-ok{display:none;margin-top:16px;font-size:16px;color:var(--green);font-weight:700;font-family:'DM Mono',monospace}
@@ -379,7 +379,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
       <h2 class="submit-h">Ready to stop skipping?<br>Join the <span class="grn">Aplyer</span> waitlist.</h2>
       <div id="cfr">
         <div class="submit-form" style="margin-bottom:8px;"><input type="email" id="c-email" placeholder="your@email.com"/><button onclick="sub2()">Submit Application &rarr;</button></div>
-        <div class="submit-form" style="margin-top:8px;"><input type="text" id="c-name" placeholder="First name — so I can say hi (optional)" style="flex:1;padding:13px 16px;font-size:15px;font-family:Lato,sans-serif;background:transparent;border:none;outline:none;color:var(--white)"/></div>
+        <div class="submit-form" style="margin-top:8px;"><input type="text" id="c-name" placeholder="First name (optional)" style="flex:1;padding:13px 16px;font-size:15px;font-family:Lato,sans-serif;background:transparent;border:none;outline:none;color:var(--white)"/></div>
       </div>
       <div class="submit-ok" id="cok"><span style="font-size:22px;">✓</span> You're in. Check your inbox.</div>
       <div class="submit-note" style="font-size:13px;color:var(--white2);line-height:1.7;">Early access is open. Founding members get priority access and special pricing when we launch.</div>
