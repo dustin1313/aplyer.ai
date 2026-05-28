@@ -409,14 +409,37 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
 </footer>
 
 <script>
-const ML_URL='https://assets.mailerlite.com/jsonp/2384743/forms/188646756795286821/subscribe';
+const BREVO_KEY='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';
+const WELCOME_HTML=(name,email)=>`<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#333;max-width:580px;margin:0 auto;padding:24px">
+<p>Hi ${name||'there'},</p>
+<p>You just joined the Aplyer founding member waitlist.</p>
+<p>I built this because I came back to the job market at 50 after 8 years as a recruiter — and I still closed the page on jobs I wanted because the essay questions were too much.</p>
+<p>92% of people who click Apply never finish. Aplyer fixes that. It's a Chrome extension that fills those essay questions in your voice, using your resume, without ever leaving the application page.</p>
+<p>As a founding member you get priority access and pricing that will never be offered again.</p>
+<p>If you want to see it work on your own resume before we launch, reply to this email. I'll set up a quick 15-minute call.</p>
+<p>— Dustin Palay<br>Founder, <a href="https://aplyer.ai" style="color:#1DB954">Aplyer.ai</a></p>
+<p style="font-size:13px;color:#888">P.S. If this landed in Promotions, drag it to your Primary inbox so you don't miss updates.</p>
+</div>`;
 async function mlSubmit(email,name){
-  const fd=new FormData();
-  fd.append('fields[email]',email);
-  if(name) fd.append('fields[name]',name);
-  fd.append('ml-submit','1');
-  fd.append('anticsrf','true');
-  try{await fetch(ML_URL,{method:'POST',body:fd,mode:'no-cors'});}catch(e){}
+  try{
+    await fetch('https://api.brevo.com/v3/contacts',{
+      method:'POST',
+      headers:{'api-key':BREVO_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({email,attributes:{FIRSTNAME:name||''},updateEnabled:true})
+    });
+  }catch(e){}
+  try{
+    await fetch('https://api.brevo.com/v3/smtp/email',{
+      method:'POST',
+      headers:{'api-key':BREVO_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({
+        sender:{name:'Dustin Palay',email:'dustin@aplyer.ai'},
+        to:[{email,name:name||'there'}],
+        subject:"You're in — here's what happens next",
+        htmlContent:WELCOME_HTML(name,email)
+      })
+    });
+  }catch(e){}
 }
 function sub1(){}
 function sub2(){const n=document.getElementById('c-name').value.trim();const e=document.getElementById('c-email').value.trim();if(!e||!e.includes('@'))return;mlSubmit(e,n);document.getElementById('cfr').style.display='none';document.getElementById('cok').style.display='block';}
