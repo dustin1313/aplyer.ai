@@ -133,7 +133,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,15,26,0.97
 
 /* CONFIDENCE BADGES */
 .confidence-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.conf-badge{display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid var(--green-border);border-radius:20px;padding:5px 12px}
+.conf-inner{display:flex;gap:8px;align-items:center;width:100%;flex-wrap:wrap}
+.conf-badge{display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid var(--green-border);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;min-width:120px}
+.conf-red{border-color:rgba(229,55,58,.35);min-width:180px}
+.conf-yellow{border-color:rgba(234,179,8,.35)}
+.conf-green{border-color:rgba(29,185,84,.35)}
 .conf-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--green)}
 .conf-badge span{font-size:13px;font-family:'DM Mono',monospace;color:var(--green)}
 
@@ -245,8 +249,8 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
   .t-name{font-size:13px}
   .t-role{font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .t-date{font-size:11px}
-  .conf-inner{flex-direction:column !important}
-  .conf-badge{flex:none !important;width:100% !important;justify-content:flex-start !important;padding:8px 14px}
+  .conf-inner{flex-direction:column}
+  .conf-badge{flex:none;width:100%;justify-content:flex-start;min-width:unset;padding:8px 14px}
 }
 </style>
 </head>
@@ -377,10 +381,10 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
         </div>
         <div class="ans-body" style="margin-bottom:10px;">After generating each answer, Aplyer shows three quality indicators. All three are green when the answer is strong — your voice is matched, the AI signature is low, and your real experience is used. If any indicator is not green, Aplyer flags it and prompts you to review before submitting. You are always in control.</div>
         <div class="confidence-row">
-          <div class="conf-inner" style="display:flex;gap:8px;align-items:center;width:100%;flex-wrap:wrap;">
-            <div class="conf-badge" style="border-color:rgba(29,185,84,.35);flex:1;min-width:120px;justify-content:center;"><div class="conf-dot" style="background:#1DB954"></div><span style="color:#1DB954">✓ Voice Match</span></div>
-            <div class="conf-badge" style="border-color:rgba(234,179,8,.35);flex:1;min-width:120px;justify-content:center;"><div class="conf-dot" style="background:#eab308"></div><span style="color:#eab308">⚠ Low AI Signature</span></div>
-            <div class="conf-badge" style="border-color:rgba(229,55,58,.35);flex:1;min-width:160px;justify-content:center;"><div class="conf-dot" style="background:#E5373A"></div><span style="color:#E5373A">✕ Real Experience — Not found</span></div>
+          <div class="conf-inner">
+            <div class="conf-badge conf-green"><div class="conf-dot" style="background:#1DB954"></div><span style="color:#1DB954">✓ Voice Match</span></div>
+            <div class="conf-badge conf-yellow"><div class="conf-dot" style="background:#eab308"></div><span style="color:#eab308">⚠ Low AI Signature</span></div>
+            <div class="conf-badge conf-red"><div class="conf-dot" style="background:#E5373A"></div><span style="color:#E5373A">✕ Real Experience — Not found</span></div>
           </div>
         </div>
       </div>
