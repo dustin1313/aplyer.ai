@@ -436,6 +436,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
           #success-message{background:transparent!important;border:none!important;color:var(--green)!important;font-family:Lato,sans-serif!important;font-size:16px!important;}
           #error-message{font-family:Lato,sans-serif!important;}
           .sib-form{background:transparent!important;padding:0!important;}
+          .g-recaptcha{transform:scale(0.77);transform-origin:0 0;margin-bottom:4px!important;}
         </style>
         <div class="sib-form" style="text-align:center;background-color:transparent;">
           <div id="sib-form-container" class="sib-form-container">
@@ -470,6 +471,17 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
                         <div class="entry__field">
                           <input class="input" maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="off" placeholder="First name — so I can say hi (optional)" />
                         </div>
+                      </div>
+                      <label class="entry__error entry__error--primary" style="font-family:Lato,sans-serif;font-size:14px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:3px;"></label>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:8px 0;">
+                  <div class="sib-captcha sib-form-block">
+                    <div class="form__entry entry_block">
+                      <div class="form__label-row">
+                        <script>function handleCaptchaResponse(){var event=new Event('captchaChange');document.getElementById('sib-captcha').dispatchEvent(event);}</script>
+                        <div class="g-recaptcha sib-visible-recaptcha" id="sib-captcha" data-sitekey="6LfLwQItAAAAANIu-kEY9jo-DyXKh0ccnOdXposX" data-callback="handleCaptchaResponse" style="direction:ltr"></div>
                       </div>
                       <label class="entry__error entry__error--primary" style="font-family:Lato,sans-serif;font-size:14px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:3px;"></label>
                     </div>
@@ -525,6 +537,6 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
   var AUTOHIDE = Boolean(1);
 </script>
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-
+<script src="https://www.google.com/recaptcha/api.js?hl=en"></script>
 </body>
 </html>
