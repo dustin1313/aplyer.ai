@@ -452,7 +452,8 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
               </div>
             </div>
             <div id="sib-container" class="sib-container--large sib-container--vertical" style="max-width:540px;text-align:center;background-color:transparent;border:none;direction:ltr">
-              <form id="sib-form" method="POST" action="https://8ee8ca52.sibforms.com/serve/MUIFAIkMhzlB3n15TXH3YUovCjF6f3y1MIvQV9tUx2lqzVwLUhkueW7tlOfjzB-J4G25o4bDeN6Rz4HtB4T1Sqopdelbj0mLou1iv75kpD7Jksize9xGHTPhCPhSnYtS_oAmsX1_-hSOQDgikOikUIPhW6g8uVqfbk6T5xGDx3r1_vCKLVfFEedhy0eVwNgV1VD4QREyxQZ2TzATxw==" data-type="subscription">
+              <iframe name="brevo-frame" style="display:none;"></iframe>
+              <form id="sib-form" method="POST" target="brevo-frame" action="https://8ee8ca52.sibforms.com/serve/MUIFAIkMhzlB3n15TXH3YUovCjF6f3y1MIvQV9tUx2lqzVwLUhkueW7tlOfjzB-J4G25o4bDeN6Rz4HtB4T1Sqopdelbj0mLou1iv75kpD7Jksize9xGHTPhCPhSnYtS_oAmsX1_-hSOQDgikOikUIPhW6g8uVqfbk6T5xGDx3r1_vCKLVfFEedhy0eVwNgV1VD4QREyxQZ2TzATxw==" data-type="subscription" onsubmit="aplerSuccess()">
                 <div style="padding:8px 0;">
                   <div class="sib-input sib-form-block">
                     <div class="form__entry entry_block">
@@ -517,16 +518,13 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
 </footer>
 
 <script>
-  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
-  window.LOCALE = 'en';
-  window.EMAIL_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
-  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank.";
-  window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
-  window.INVALID_DATE = "Please enter a valid date";
-  window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
-  var AUTOHIDE = Boolean(1);
+function aplerSuccess() {
+  setTimeout(function() {
+    document.getElementById('sib-form').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+  }, 500);
+}
 </script>
-<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 <script src="https://www.google.com/recaptcha/api.js?hl=en"></script>
 </body>
 </html>
