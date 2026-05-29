@@ -133,11 +133,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,15,26,0.97
 
 /* CONFIDENCE BADGES */
 .confidence-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.conf-inner{display:flex;gap:8px;align-items:center;width:100%;flex-wrap:wrap}
-.conf-badge{display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid var(--green-border);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;min-width:120px}
-.conf-red{border-color:rgba(229,55,58,.35);min-width:180px}
-.conf-yellow{border-color:rgba(234,179,8,.35)}
-.conf-green{border-color:rgba(29,185,84,.35)}
+.conf-badge{display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid var(--green-border);border-radius:20px;padding:5px 12px}
 .conf-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--green)}
 .conf-badge span{font-size:13px;font-family:'DM Mono',monospace;color:var(--green)}
 
@@ -249,8 +245,6 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
   .t-name{font-size:13px}
   .t-role{font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .t-date{font-size:11px}
-  .conf-inner{flex-direction:column}
-  .conf-badge{flex:none;width:100%;justify-content:flex-start;min-width:unset;padding:8px 14px}
 }
 </style>
 </head>
@@ -380,10 +374,12 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
           <div class="step-box"><div class="step-n">3 / APPLY</div><div class="step-t">Every question answered. Every field filled.</div><div class="step-b">Essay questions get answers in your voice using your real experience. Standard fields — name, address, work history — fill automatically. Review everything, edit anything, hit submit.</div></div>
         </div>
         <div class="ans-body" style="margin-bottom:10px;">After generating each answer, Aplyer shows three quality indicators. All three are green when the answer is strong — your voice is matched, the AI signature is low, and your real experience is used. If any indicator is not green, Aplyer flags it and prompts you to review before submitting. You are always in control.</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;width:100%;">
-          <div style="display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:6px 14px;white-space:nowrap;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#1DB954;">✓ Voice Match</span></div>
-          <div style="display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid rgba(234,179,8,.35);border-radius:20px;padding:6px 14px;white-space:nowrap;"><div style="width:6px;height:6px;border-radius:50%;background:#eab308;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#eab308;">⚠ Low AI Signature</span></div>
-          <div style="display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid rgba(229,55,58,.35);border-radius:20px;padding:6px 14px;white-space:nowrap;"><div style="width:6px;height:6px;border-radius:50%;background:#E5373A;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#E5373A;">✕ Real Experience — Not found</span></div>
+        <div class="confidence-row">
+          <div style="display:flex;gap:8px;align-items:center;width:100%;">
+            <div class="conf-badge" style="border-color:rgba(29,185,84,.35);flex:1;justify-content:center;"><div class="conf-dot" style="background:#1DB954"></div><span style="color:#1DB954">✓ Voice Match</span></div>
+            <div class="conf-badge" style="border-color:rgba(234,179,8,.35);flex:1;justify-content:center;"><div class="conf-dot" style="background:#eab308"></div><span style="color:#eab308">⚠ Low AI Signature</span></div>
+            <div class="conf-badge" style="border-color:rgba(229,55,58,.35);flex:1;justify-content:center;"><div class="conf-dot" style="background:#E5373A"></div><span style="color:#E5373A">✕ Real Experience — Not found</span></div>
+          </div>
         </div>
       </div>
     </div>
