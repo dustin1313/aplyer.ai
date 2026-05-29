@@ -133,7 +133,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,15,26,0.97
 
 /* CONFIDENCE BADGES */
 .confidence-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.conf-badge{display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid var(--green-border);border-radius:20px;padding:5px 12px}
+.conf-inner{display:flex;gap:8px;align-items:center;width:100%;flex-wrap:wrap}
+.conf-badge{display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid var(--green-border);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;min-width:120px}
+.conf-red{border-color:rgba(229,55,58,.35);min-width:180px}
+.conf-yellow{border-color:rgba(234,179,8,.35)}
+.conf-green{border-color:rgba(29,185,84,.35)}
 .conf-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--green)}
 .conf-badge span{font-size:13px;font-family:'DM Mono',monospace;color:var(--green)}
 
@@ -245,6 +249,8 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
   .t-name{font-size:13px}
   .t-role{font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .t-date{font-size:11px}
+  .conf-inner{flex-direction:column}
+  .conf-badge{flex:none;width:100%;justify-content:flex-start;min-width:unset;padding:8px 14px}
 }
 </style>
 </head>
@@ -374,12 +380,10 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
           <div class="step-box"><div class="step-n">3 / APPLY</div><div class="step-t">Every question answered. Every field filled.</div><div class="step-b">Essay questions get answers in your voice using your real experience. Standard fields — name, address, work history — fill automatically. Review everything, edit anything, hit submit.</div></div>
         </div>
         <div class="ans-body" style="margin-bottom:10px;">After generating each answer, Aplyer shows three quality indicators. All three are green when the answer is strong — your voice is matched, the AI signature is low, and your real experience is used. If any indicator is not green, Aplyer flags it and prompts you to review before submitting. You are always in control.</div>
-        <div class="confidence-row">
-          <div style="display:flex;gap:8px;align-items:center;width:100%;">
-            <div class="conf-badge" style="border-color:rgba(29,185,84,.35);flex:1;justify-content:center;"><div class="conf-dot" style="background:#1DB954"></div><span style="color:#1DB954">✓ Voice Match</span></div>
-            <div class="conf-badge" style="border-color:rgba(234,179,8,.35);flex:1;justify-content:center;"><div class="conf-dot" style="background:#eab308"></div><span style="color:#eab308">⚠ Low AI Signature</span></div>
-            <div class="conf-badge" style="border-color:rgba(229,55,58,.35);flex:1;justify-content:center;"><div class="conf-dot" style="background:#E5373A"></div><span style="color:#E5373A">✕ Real Experience — Not found</span></div>
-          </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;width:100%;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:var(--field2);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#1DB954;">✓ Voice Match</span></div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:var(--field2);border:1px solid rgba(234,179,8,.35);border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#eab308;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#eab308;">⚠ Low AI Signature</span></div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:var(--field2);border:1px solid rgba(229,55,58,.35);border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#E5373A;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#E5373A;">✕ Real Experience — Not found</span></div>
         </div>
       </div>
     </div>
@@ -416,12 +420,82 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
     <div class="submit-inner">
       <div class="submit-label" style="font-size:12px;letter-spacing:.18em;">SUBMIT YOUR APPLICATION</div>
       <h2 class="submit-h">Ready to stop skipping?<br>Join the <span class="grn">Aplyer</span> waitlist.</h2>
-      <div id="cfr">
-        <div class="submit-form" style="margin-bottom:8px;"><input type="email" id="c-email" placeholder="your@email.com"/><button onclick="sub2()">Submit Application &rarr;</button></div>
-        <div class="submit-form" style="margin-top:8px;"><input type="text" id="c-name" placeholder="First name (optional)" style="flex:1;padding:13px 16px;font-size:15px;font-family:Lato,sans-serif;background:transparent;border:none;outline:none;color:var(--white)"/></div>
+      <div style="max-width:480px;margin:0 auto;">
+        <style>
+          #sib-container{background-color:transparent!important;border:none!important;max-width:100%!important;}
+          #sib-container input{background:var(--field2)!important;border:1.5px solid var(--border)!important;border-radius:8px!important;color:var(--white)!important;font-family:Lato,sans-serif!important;font-size:15px!important;padding:13px 16px!important;margin-bottom:8px!important;}
+          #sib-container input::placeholder{color:rgba(255,255,255,0.45)!important;}
+          .sib-form-block__button{background:var(--green)!important;color:#000!important;font-family:Lato,sans-serif!important;font-weight:700!important;border-radius:8px!important;padding:13px 22px!important;width:100%!important;font-size:15px!important;letter-spacing:.02em!important;}
+          .sib-form .sib-form-block p{display:none!important;}
+          .sib-form-block:first-child{display:none!important;}
+          .entry__label{display:none!important;}
+          .entry__specification{display:none!important;}
+          #success-message{background:transparent!important;border:none!important;color:var(--green)!important;font-family:Lato,sans-serif!important;font-size:16px!important;}
+          #error-message{font-family:Lato,sans-serif!important;}
+          .sib-form{background:transparent!important;padding:0!important;}
+        </style>
+        <div class="sib-form" style="text-align:center;background-color:transparent;">
+          <div id="sib-form-container" class="sib-form-container">
+            <div id="error-message" class="sib-form-message-panel" style="font-family:Lato,sans-serif;font-size:16px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:3px;max-width:540px;display:none;">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
+              </div>
+            </div>
+            <div id="success-message" class="sib-form-message-panel" style="font-family:Lato,sans-serif;font-size:16px;text-align:center;color:var(--green);max-width:540px;display:none;">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                <span class="sib-form-message-panel__inner-text">✓ You&#39;re in. Check your inbox — including your Promotions folder.</span>
+              </div>
+            </div>
+            <div id="sib-container" class="sib-container--large sib-container--vertical" style="max-width:540px;text-align:center;background-color:transparent;border:none;direction:ltr">
+              <form id="sib-form" method="POST" action="https://8ee8ca52.sibforms.com/serve/MUIFAIkMhzlB3n15TXH3YUovCjF6f3y1MIvQV9tUx2lqzVwLUhkueW7tlOfjzB-J4G25o4bDeN6Rz4HtB4T1Sqopdelbj0mLou1iv75kpD7Jksize9xGHTPhCPhSnYtS_oAmsX1_-hSOQDgikOikUIPhW6g8uVqfbk6T5xGDx3r1_vCKLVfFEedhy0eVwNgV1VD4QREyxQZ2TzATxw==" data-type="subscription">
+                <div style="padding:8px 0;">
+                  <div class="sib-input sib-form-block">
+                    <div class="form__entry entry_block">
+                      <div class="form__label-row">
+                        <div class="entry__field">
+                          <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="your@email.com" data-required="true" required />
+                        </div>
+                      </div>
+                      <label class="entry__error entry__error--primary" style="font-family:Lato,sans-serif;font-size:14px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:3px;"></label>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:8px 0;">
+                  <div class="sib-input sib-form-block">
+                    <div class="form__entry entry_block">
+                      <div class="form__label-row">
+                        <div class="entry__field">
+                          <input class="input" maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="off" placeholder="First name — so I can say hi (optional)" />
+                        </div>
+                      </div>
+                      <label class="entry__error entry__error--primary" style="font-family:Lato,sans-serif;font-size:14px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:3px;"></label>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:8px 0;">
+                  <div class="sib-captcha sib-form-block">
+                    <div class="form__entry entry_block">
+                      <div class="form__label-row">
+                        <script>function handleCaptchaResponse(){var event=new Event('captchaChange');document.getElementById('sib-captcha').dispatchEvent(event);}</script>
+                        <div class="g-recaptcha sib-visible-recaptcha" id="sib-captcha" data-sitekey="6LfLwQItAAAAANIu-kEY9jo-DyXKh0ccnOdXposX" data-callback="handleCaptchaResponse" style="direction:ltr"></div>
+                      </div>
+                      <label class="entry__error entry__error--primary" style="font-family:Lato,sans-serif;font-size:14px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:3px;"></label>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:8px 0;">
+                  <div class="sib-form-block" style="text-align:left">
+                    <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Join the Waitlist →</button>
+                  </div>
+                </div>
+                <input type="text" name="email_address_check" value="" class="input--hidden">
+                <input type="hidden" name="locale" value="en">
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="submit-ok" id="cok"><span style="font-size:22px;">✓</span> You're in. Check your inbox — including your Promotions folder.</div>
-      <div class="submit-note" style="font-size:13px;color:var(--white2);line-height:1.7;">Early access is open. Founding members get priority access and special pricing when we launch.</div>
+      <div class="submit-note" style="font-size:13px;color:var(--white2);line-height:1.7;margin-top:16px;">Early access is open. Founding members get priority access and special pricing when we launch.</div>
     </div>
   </div>
 </div>
@@ -448,43 +522,16 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
 </footer>
 
 <script>
-const BREVO_KEY='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';
-const WELCOME_HTML=(name,email)=>`<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#333;max-width:580px;margin:0 auto;padding:24px">
-<p>Hi ${name||'there'},</p>
-<p>You just joined the Aplyer founding member waitlist.</p>
-<p>I built this because I came back to the job market at 50 after 8 years as a recruiter — and I still closed the page on jobs I wanted because the essay questions were too much.</p>
-<p>92% of people who click Apply never finish. Aplyer fixes that. It's a Chrome extension that fills those essay questions in your voice, using your resume, without ever leaving the application page.</p>
-<p>As a founding member you get priority access and pricing that will never be offered again.</p>
-<p>If you want to see it work on your own resume before we launch, reply to this email. I'll set up a quick 15-minute call.</p>
-<p>— Dustin Palay<br>Founder, <a href="https://aplyer.ai" style="color:#1DB954">Aplyer.ai</a></p>
-
-</div>`;
-async function mlSubmit(email,name){
-  try{
-    await fetch('https://api.brevo.com/v3/contacts',{
-      method:'POST',
-      headers:{'api-key':BREVO_KEY,'Content-Type':'application/json'},
-      body:JSON.stringify({email,attributes:{FIRSTNAME:name||''},updateEnabled:true})
-    });
-  }catch(e){}
-  try{
-    await fetch('https://api.brevo.com/v3/smtp/email',{
-      method:'POST',
-      headers:{'api-key':BREVO_KEY,'Content-Type':'application/json'},
-      body:JSON.stringify({
-        sender:{name:'Dustin Palay',email:'dustin@aplyer.ai'},
-        to:[{email,name:name||'there'}],
-        subject:"You're in — here's what happens next",
-        htmlContent:WELCOME_HTML(name,email)
-      })
-    });
-  }catch(e){}
-}
-function sub1(){}
-function sub2(){const n=document.getElementById('c-name').value.trim();const e=document.getElementById('c-email').value.trim();if(!e||!e.includes('@'))return;mlSubmit(e,n);document.getElementById('cfr').style.display='none';document.getElementById('cok').style.display='block';}
-// hero form removed - single waitlist form at bottom
-document.getElementById('c-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('c-email').focus()});
-document.getElementById('c-email').addEventListener('keydown',e=>{if(e.key==='Enter')sub2()});
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+  window.LOCALE = 'en';
+  window.EMAIL_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank.";
+  window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.INVALID_DATE = "Please enter a valid date";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+  var AUTOHIDE = Boolean(1);
 </script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?hl=en"></script>
 </body>
 </html>
