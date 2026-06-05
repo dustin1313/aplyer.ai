@@ -296,6 +296,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
         <div class="field-mini"><label>Requires</label><div class="val">Google Chrome — <a href="https://www.google.com/chrome/" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;">Download free →</a></div></div>
         <div class="field-mini"><label>Pricing</label><div class="val">Free to join · Founding member pricing at launch</div></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -428,6 +429,73 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
           style="display:block;width:100%;background:#162540;border:2px solid rgba(255,255,255,0.70);border-radius:8px;color:#FFFFFF;font-family:'Lato',sans-serif;font-size:15px;padding:13px 16px;margin-bottom:8px;box-sizing:border-box;outline:none;">
         <input type="text" id="aplyer-name" placeholder="First name — so I can say hi (optional)"
           style="display:block;width:100%;background:#162540;border:2px solid rgba(255,255,255,0.70);border-radius:8px;color:#FFFFFF;font-family:'Lato',sans-serif;font-size:15px;padding:13px 16px;margin-bottom:8px;box-sizing:border-box;outline:none;">
+
+        <!-- OPTIONAL SECTION TOGGLE -->
+        <div id="optional-toggle" onclick="toggleOptional()" style="display:flex;align-items:center;justify-content:space-between;width:100%;background:#122038;border:2px solid rgba(255,255,255,0.35);border-radius:8px;color:#F0F0F0;font-family:'Lato',sans-serif;font-size:14px;font-weight:700;padding:12px 16px;margin-bottom:8px;box-sizing:border-box;cursor:pointer;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(29,185,84,0.7)'" onmouseout="this.style.borderColor=document.getElementById('optional-body').style.display==='none'?'rgba(255,255,255,0.35)':'rgba(29,185,84,0.7)'">
+          <span>Want Aplyer to sound even more like you? <span style="font-weight:400;color:#AAAAAA;font-size:13px;">— optional</span></span>
+          <span id="optional-chevron" style="color:#1DB954;font-size:18px;transition:transform .2s;">＋</span>
+        </div>
+
+        <!-- OPTIONAL BODY -->
+        <div id="optional-body" style="display:none;background:#0D1829;border:2px solid rgba(29,185,84,0.4);border-radius:8px;padding:16px;margin-bottom:8px;box-sizing:border-box;">
+
+          <!-- RESUME -->
+          <div style="margin-bottom:12px;">
+            <div style="font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F0F0F0;margin-bottom:6px;">Resume <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#AAAAAA;font-size:11px;">— PDF or Word doc</span></div>
+            <label style="display:flex;align-items:center;gap:10px;width:100%;background:#162540;border:2px solid rgba(255,255,255,0.50);border-radius:8px;color:#F0F0F0;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;padding:11px 16px;box-sizing:border-box;cursor:pointer;transition:border-color .15s;" onmouseover="this.style.borderColor='rgba(29,185,84,0.8)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.50)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1DB954" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span id="resume-name" style="color:#F0F0F0;">Get a head start — upload your resume</span>
+              <input type="file" id="aplyer-resume" accept=".pdf,.doc,.docx" style="display:none;" onchange="document.getElementById('resume-name').textContent=this.files[0]?this.files[0].name:'Get a head start — upload your resume'">
+            </label>
+            <div style="margin-top:5px;font-size:11px;font-family:'DM Mono',monospace;color:#AAAAAA;">Your resume will be ready to go the moment we launch — no setup needed on day one.</div>
+          </div>
+
+          <!-- COVER LETTER -->
+          <div style="margin-bottom:12px;">
+            <div style="font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F0F0F0;margin-bottom:6px;">Cover Letter <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#AAAAAA;font-size:11px;">— PDF or Word doc</span></div>
+            <label style="display:flex;align-items:center;gap:10px;width:100%;background:#162540;border:2px solid rgba(255,255,255,0.50);border-radius:8px;color:#F0F0F0;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;padding:11px 16px;box-sizing:border-box;cursor:pointer;transition:border-color .15s;" onmouseover="this.style.borderColor='rgba(29,185,84,0.8)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.50)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1DB954" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span id="cover-name" style="color:#F0F0F0;">Get a head start — upload your cover letter</span>
+              <input type="file" id="aplyer-cover" accept=".pdf,.doc,.docx" style="display:none;" onchange="document.getElementById('cover-name').textContent=this.files[0]?this.files[0].name:'Get a head start — upload your cover letter'">
+            </label>
+          </div>
+
+          <!-- SOCIAL MEDIA TOGGLE -->
+          <div id="social-toggle" onclick="toggleSocial()" style="display:flex;align-items:center;justify-content:space-between;width:100%;background:#162540;border:2px solid rgba(255,255,255,0.50);border-radius:8px;color:#F0F0F0;font-family:'Lato',sans-serif;font-size:14px;font-weight:700;padding:11px 16px;box-sizing:border-box;cursor:pointer;transition:border-color .15s;" onmouseover="this.style.borderColor='rgba(29,185,84,0.8)'" onmouseout="this.style.borderColor=document.getElementById('social-body').style.display==='none'?'rgba(255,255,255,0.50)':'rgba(29,185,84,0.8)'">
+            <span style="color:#F0F0F0;">Social Media Profiles <span style="font-weight:400;color:#AAAAAA;font-size:13px;">— helps Aplyer learn your writing style</span></span>
+            <span id="social-chevron" style="color:#1DB954;font-size:18px;transition:transform .2s;">＋</span>
+          </div>
+
+          <!-- SOCIAL BODY -->
+          <div id="social-body" style="display:none;margin-top:10px;">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="position:relative;">
+                <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#F0F0F0;font-family:'DM Mono',monospace;font-weight:600;">in/</span>
+                <input type="text" name="linkedin" placeholder="linkedin.com/in/yourname" style="width:100%;background:#162540;border:2px solid rgba(255,255,255,0.50);border-radius:8px;color:#F0F0F0;font-family:'Lato',sans-serif;font-size:14px;padding:11px 12px 11px 36px;outline:none;box-sizing:border-box;transition:border-color .15s;" onfocus="this.style.borderColor='#1DB954'" onblur="this.style.borderColor='rgba(255,255,255,0.50)'">
+              </div>
+              <div style="position:relative;">
+                <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#F0F0F0;font-family:'DM Mono',monospace;font-weight:600;">fb/</span>
+                <input type="text" name="facebook" placeholder="facebook.com/yourname" style="width:100%;background:#162540;border:2px solid rgba(255,255,255,0.50);border-radius:8px;color:#F0F0F0;font-family:'Lato',sans-serif;font-size:14px;padding:11px 12px 11px 36px;outline:none;box-sizing:border-box;transition:border-color .15s;" onfocus="this.style.borderColor='#1DB954'" onblur="this.style.borderColor='rgba(255,255,255,0.50)'">
+              </div>
+              <div style="position:relative;">
+                <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#F0F0F0;font-family:'DM Mono',monospace;font-weight:600;">@</span>
+                <input type="text" name="instagram" placeholder="instagram handle" style="width:100%;background:#162540;border:2px solid rgba(255,255,255,0.50);border-radius:8px;color:#F0F0F0;font-family:'Lato',sans-serif;font-size:14px;padding:11px 12px 11px 30px;outline:none;box-sizing:border-box;transition:border-color .15s;" onfocus="this.style.borderColor='#1DB954'" onblur="this.style.borderColor='rgba(255,255,255,0.50)'">
+              </div>
+              <div style="position:relative;">
+                <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#F0F0F0;font-family:'DM Mono',monospace;font-weight:600;">@</span>
+                <input type="text" name="tiktok" placeholder="tiktok handle" style="width:100%;background:#162540;border:2px solid rgba(255,255,255,0.50);border-radius:8px;color:#F0F0F0;font-family:'Lato',sans-serif;font-size:14px;padding:11px 12px 11px 30px;outline:none;box-sizing:border-box;transition:border-color .15s;" onfocus="this.style.borderColor='#1DB954'" onblur="this.style.borderColor='rgba(255,255,255,0.50)'">
+              </div>
+              <div style="position:relative;">
+                <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#F0F0F0;font-family:'DM Mono',monospace;font-weight:600;">@</span>
+                <input type="text" name="twitter" placeholder="x / twitter handle" style="width:100%;background:#162540;border:2px solid rgba(255,255,255,0.50);border-radius:8px;color:#F0F0F0;font-family:'Lato',sans-serif;font-size:14px;padding:11px 12px 11px 30px;outline:none;box-sizing:border-box;transition:border-color .15s;" onfocus="this.style.borderColor='#1DB954'" onblur="this.style.borderColor='rgba(255,255,255,0.50)'">
+              </div>
+            </div>
+            <div style="margin-top:10px;font-size:13px;font-family:'DM Mono',monospace;color:#E0E0E0;line-height:1.7;">Share your public profiles so Aplyer can learn how you naturally write — so every answer sounds like you, not a template.</div>
+          </div>
+
+        </div>
+        <!-- END OPTIONAL BODY -->
+
         <button id="aplyer-btn" onclick="aplerSubmit()"
           style="display:block;width:100%;background:#1DB954;color:#000;border:none;border-radius:8px;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;padding:13px 22px;cursor:pointer;letter-spacing:.02em;">Join the Waitlist →</button>
       </div>
@@ -436,25 +504,71 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
         #aplyer-email:focus,#aplyer-name:focus{border-color:rgba(255,255,255,0.90);}
       </style>
       <script>
+      function toggleOptional() {
+        var body = document.getElementById('optional-body');
+        var chevron = document.getElementById('optional-chevron');
+        var toggle = document.getElementById('optional-toggle');
+        if (body.style.display === 'none') {
+          body.style.display = 'block';
+          chevron.textContent = '−';
+          toggle.style.borderColor = 'rgba(29,185,84,0.7)';
+        } else {
+          body.style.display = 'none';
+          chevron.textContent = '＋';
+          toggle.style.borderColor = 'rgba(255,255,255,0.35)';
+        }
+      }
+      function toggleSocial() {
+        var body = document.getElementById('social-body');
+        var chevron = document.getElementById('social-chevron');
+        var toggle = document.getElementById('social-toggle');
+        if (body.style.display === 'none') {
+          body.style.display = 'block';
+          chevron.textContent = '−';
+          toggle.style.borderColor = 'rgba(29,185,84,0.8)';
+        } else {
+          body.style.display = 'none';
+          chevron.textContent = '＋';
+          toggle.style.borderColor = 'rgba(255,255,255,0.50)';
+        }
+      }
       async function aplerSubmit() {
         var email = document.getElementById('aplyer-email').value.trim();
         var name = document.getElementById('aplyer-name').value.trim();
         var errEl = document.getElementById('aplyer-error-msg');
         var btn = document.getElementById('aplyer-btn');
+        var linkedin = document.querySelector('input[name="linkedin"]') ? document.querySelector('input[name="linkedin"]').value.trim() : '';
+        var facebook = document.querySelector('input[name="facebook"]') ? document.querySelector('input[name="facebook"]').value.trim() : '';
+        var instagram = document.querySelector('input[name="instagram"]') ? document.querySelector('input[name="instagram"]').value.trim() : '';
+        var tiktok = document.querySelector('input[name="tiktok"]') ? document.querySelector('input[name="tiktok"]').value.trim() : '';
+        var twitter = document.querySelector('input[name="twitter"]') ? document.querySelector('input[name="twitter"]').value.trim() : '';
+        var resumeFile = document.getElementById('aplyer-resume') ? document.getElementById('aplyer-resume').files[0] : null;
+        var coverFile = document.getElementById('aplyer-cover') ? document.getElementById('aplyer-cover').files[0] : null;
         errEl.style.display = 'none';
         if (!email) { errEl.textContent = 'Please enter your email address.'; errEl.style.display = 'block'; return; }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; return; }
         btn.textContent = 'Submitting...'; btn.disabled = true;
         try {
+          var formData = new FormData();
+          formData.append('email', email);
+          if (name) formData.append('firstName', name);
+          if (linkedin) formData.append('linkedin', linkedin);
+          if (facebook) formData.append('facebook', facebook);
+          if (instagram) formData.append('instagram', instagram);
+          if (tiktok) formData.append('tiktok', tiktok);
+          if (twitter) formData.append('twitter', twitter);
+          if (resumeFile) formData.append('resume', resumeFile);
+          if (coverFile) formData.append('cover', coverFile);
           var res = await fetch('https://aplyer-api.vercel.app/api/subscribe', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email, firstName: name || undefined })
+            body: formData
           });
           var data = await res.json();
           if (res.ok) {
             document.getElementById('aplyer-email').style.display = 'none';
             document.getElementById('aplyer-name').style.display = 'none';
+            document.getElementById('optional-toggle').style.display = 'none';
+            document.getElementById('optional-body').style.display = 'none';
             btn.style.display = 'none';
             document.getElementById('aplyer-success-msg').style.display = 'block';
           } else {
