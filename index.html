@@ -74,7 +74,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .q-block{background:var(--paper);border:1px solid var(--border);border-radius:12px;margin-top:16px;overflow:hidden;transition:border-color .2s}
 .q-block:hover{border-color:var(--border2)}
 .q-label{padding:20px 32px 0;display:flex;align-items:flex-start;gap:14px}
-.q-num{font-family:'DM Mono',monospace;font-size:16px;color:var(--green);letter-spacing:.1em;flex-shrink:0;margin-top:4px}
+.q-num{font-family:'DM Mono',monospace;font-weight:500;font-size:17px;color:var(--green);letter-spacing:.1em;flex-shrink:0;margin-top:4px}
 .q-text{font-family:'Lato',sans-serif;font-size:clamp(24px,3vw,32px);font-weight:700;color:#111111;line-height:1.3;letter-spacing:-.01em}
 .q-text .red{color:var(--red)}
 .q-text .grn{color:var(--green)}
@@ -300,6 +300,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
 
       <div style="text-align:center;margin-bottom:16px;margin-top:8px;font-family:'Lato',sans-serif;font-size:16px;font-weight:700;color:#1DB954;letter-spacing:.02em;">Powered by WriteDNA Technology™</div>
       <button onclick="document.querySelector('.f4').scrollIntoView({behavior:'smooth'})" style="display:inline-block;padding:15px 36px;background:var(--green);color:#000;border:none;border-radius:8px;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.02em;transition:background .15s;margin-top:16px;">What makes Aplyer different →</button>
+      <div style="text-align:center;margin-top:14px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;align-items:center;"><a href="/demo" style="font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:#000;background:#1DB954;text-decoration:none;border-radius:8px;padding:11px 22px;letter-spacing:.02em;">Try the live demo →</a><a href="#free-tools" style="font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:#1DB954;text-decoration:none;border-bottom:2px solid rgba(29,185,84,0.35);padding-bottom:2px;">Or try our free recruiter tools, no signup →</a></div>
       <div class="applicant-row" style="margin-top:28px;grid-template-columns:repeat(3,1fr);">
         <div class="field-mini"><label>Status</label><div class="val green">● Early Access Open</div></div>
         <div class="field-mini"><label>Works on</label><div class="val">Workday · Greenhouse · Lever · Any employer careers page you reach from Indeed, LinkedIn, or any job board</div></div>
@@ -487,7 +488,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
 </div>
 
 <!-- Free Tools Section -->
-<div style="padding:0 24px;max-width:1100px;margin:48px auto 0;">
+<div id="free-tools" style="padding:0 24px;max-width:1100px;margin:48px auto 0;scroll-margin-top:80px;">
   <div style="background:#F5F7FA;border:1px solid rgba(0,0,0,0.10);border-radius:12px;overflow:hidden;position:relative;">
     <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#E5373A,#1DB954);"></div>
     <div style="padding:36px 40px;">
@@ -496,14 +497,14 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
       <p style="font-size:16px;color:#333333;line-height:1.7;margin-bottom:28px;max-width:640px;">Built by a former recruiter. No account, no catch. Run them on any resume today, while Aplyer is on the way.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:16px;">
 
-        <a href="/resume-audit.html" style="text-decoration:none;display:block;background:#FFFFFF;border:1px solid rgba(0,0,0,0.10);border-radius:10px;padding:22px;transition:border-color .15s,transform .15s;" onmouseover="this.style.borderColor='rgba(29,185,84,0.7)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,0.10)';this.style.transform='none'">
+        <a href="/resume-audit" style="text-decoration:none;display:block;background:#FFFFFF;border:1px solid rgba(0,0,0,0.10);border-radius:10px;padding:22px;transition:border-color .15s,transform .15s;" onmouseover="this.style.borderColor='rgba(29,185,84,0.7)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,0.10)';this.style.transform='none'">
           <div style="font-family:'DM Mono',monospace;font-size:10px;color:#1DB954;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;">Live now</div>
           <div style="font-family:'Lato',sans-serif;font-weight:700;font-size:18px;color:#0D1829;margin-bottom:6px;">Resume Red Flag Audit</div>
           <div style="font-size:14px;color:#555555;line-height:1.6;">See what a recruiter spots in the first ten seconds, and how to fix it.</div>
           <div style="margin-top:14px;font-family:'Lato',sans-serif;font-weight:700;font-size:14px;color:#1DB954;">Run my audit &rarr;</div>
         </a>
 
-        <a href="/resume-score.html" style="text-decoration:none;display:block;background:#FFFFFF;border:1px solid rgba(0,0,0,0.10);border-radius:10px;padding:22px;transition:border-color .15s,transform .15s;" onmouseover="this.style.borderColor='rgba(29,185,84,0.7)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,0.10)';this.style.transform='none'">
+        <a href="/resume-score" style="text-decoration:none;display:block;background:#FFFFFF;border:1px solid rgba(0,0,0,0.10);border-radius:10px;padding:22px;transition:border-color .15s,transform .15s;" onmouseover="this.style.borderColor='rgba(29,185,84,0.7)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,0.10)';this.style.transform='none'">
           <div style="font-family:'DM Mono',monospace;font-size:10px;color:#1DB954;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;">Live now</div>
           <div style="font-family:'Lato',sans-serif;font-weight:700;font-size:18px;color:#0D1829;margin-bottom:6px;">Resume Score vs the Job</div>
           <div style="font-size:14px;color:#555555;line-height:1.6;">See how your resume matches a job description, the way an ATS reads it.</div>
