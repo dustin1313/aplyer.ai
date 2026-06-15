@@ -1,0 +1,121 @@
+<!-- resume-audit.html -->
+<!-- Resume Red Flag Audit, a free standing tool for Reddit and direct -->
+<!-- sharing. No email gate. Results first, then an optional notify box. -->
+<!-- Goes in the aplyer.ai repo. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+<style>
+  :root{--bg:#FFFFFF;--paper:#F5F7FA;--navy:#0D1829;--green:#1DB954;--green2:#22C55E;
+    --red:#E5373A;--text:#111111;--muted:#555555;--border:rgba(0,0,0,0.10);--r:8px;}
+  .aplyer-tool{font-family:'Lato',sans-serif;color:var(--text);background:var(--bg);max-width:720px;margin:0 auto;padding:32px 24px;line-height:1.5;}
+  .aplyer-tool h1{color:var(--navy);font-weight:700;font-size:30px;margin:0 0 6px;}
+  .aplyer-tool .sub{color:var(--muted);font-size:16px;margin:0 0 20px;}
+  .aplyer-tool .drop-zone{border:2px dashed var(--green);background:var(--paper);border-radius:var(--r);padding:28px;text-align:center;color:var(--muted);cursor:pointer;transition:all .15s;}
+  .aplyer-tool .drop-zone.dragging{background:rgba(29,185,84,0.10);}
+  .aplyer-tool .status{font-size:14px;color:var(--muted);margin:8px 0 16px;}
+  .aplyer-tool button{background:var(--green);color:#000;border:none;border-radius:var(--r);padding:14px 32px;font-family:'Lato',sans-serif;font-weight:700;font-size:15px;cursor:pointer;letter-spacing:.02em;transition:all .15s;}
+  .aplyer-tool button:hover{background:var(--green2);}
+  .aplyer-tool .results{margin-top:24px;}
+  .aplyer-tool .results h2{color:var(--navy);font-weight:700;font-size:22px;}
+  .aplyer-tool .card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin:10px 0;}
+  .aplyer-tool .flag{font-weight:700;color:var(--navy);}
+  .aplyer-tool .priority{border-left:4px solid var(--red);}
+  .aplyer-tool .notify{margin-top:22px;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:18px;display:none;}
+  .aplyer-tool .notify input{padding:11px 13px;border:1px solid var(--border);border-radius:var(--r);font-family:'Lato',sans-serif;font-size:14px;width:260px;max-width:100%;margin-right:8px;}
+  .aplyer-tool .notify .small-btn{padding:11px 18px;font-size:14px;}
+  .aplyer-tool .foot{margin-top:28px;font-size:13px;color:var(--muted);}
+  .aplyer-tool .foot a{color:var(--green);text-decoration:none;}
+</style>
+
+<div class="aplyer-tool">
+  <h1>Resume Red Flag Audit</h1>
+  <p class="sub">A free tool. See what a recruiter spots in the first ten seconds, and how to fix it. No signup.</p>
+
+  <div id="audit-drop" class="drop-zone">Drag your resume here, or click. PDF, DOCX, or TXT.</div>
+  <p id="audit-status" class="status"></p>
+  <button id="audit-run">Run my audit</button>
+
+  <div id="audit-results" class="results"></div>
+
+  <div id="audit-notify" class="notify">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:8px;">Optional: hear when the full Aplyer tool launches.</div>
+    <input id="notify-email" type="email" placeholder="your@email.com" />
+    <button class="small-btn" id="notify-btn">Notify me</button>
+    <div id="notify-msg" style="font-size:13px;color:var(--muted);margin-top:8px;"></div>
+  </div>
+</div>
+
+<script>
+  const AUDIT_ENDPOINT = "https://aplyer-api.vercel.app/api/resume-audit";
+  const NOTIFY_ENDPOINT = "https://aplyer-api.vercel.app/api/notify";
+  let auditResumeText = "";
+
+  const parseFile = async (file) => {
+    const n = (file.name || "").toLowerCase();
+    if (n.endsWith(".txt")) return await file.text();
+    if (n.endsWith(".docx")) { const buf = await file.arrayBuffer(); return (await window.mammoth.extractRawText({ arrayBuffer: buf })).value; }
+    if (n.endsWith(".pdf")) {
+      const buf = await file.arrayBuffer();
+      const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
+      let t = "";
+      for (let i = 1; i <= pdf.numPages; i++) { const pg = await pdf.getPage(i); const c = await pg.getTextContent(); t += c.items.map((x)=>x.str).join(" ") + "\n"; }
+      return t;
+    }
+    throw new Error("Please upload a .pdf, .docx, or .txt resume.");
+  };
+
+  const zone = document.getElementById("audit-drop");
+  const input = document.createElement("input");
+  input.type = "file"; input.accept = ".pdf,.docx,.txt"; input.style.display = "none"; document.body.appendChild(input);
+  const status = document.getElementById("audit-status");
+  const onFile = async (file) => {
+    if (!file) return;
+    status.textContent = "Reading your resume...";
+    try { auditResumeText = await parseFile(file); status.textContent = "Loaded: " + file.name; }
+    catch (e) { auditResumeText = ""; status.textContent = e.message; }
+  };
+  zone.addEventListener("click", () => input.click());
+  input.addEventListener("change", (e) => onFile(e.target.files[0]));
+  ["dragenter","dragover"].forEach((ev)=>zone.addEventListener(ev,(e)=>{e.preventDefault();zone.classList.add("dragging");}));
+  ["dragleave","drop"].forEach((ev)=>zone.addEventListener(ev,(e)=>{e.preventDefault();zone.classList.remove("dragging");}));
+  zone.addEventListener("drop",(e)=>onFile(e.dataTransfer.files[0]));
+
+  document.getElementById("audit-run").addEventListener("click", async () => {
+    const out = document.getElementById("audit-results");
+    if (!auditResumeText) { out.textContent = "Upload your resume first."; return; }
+    out.textContent = "Running your audit...";
+    let data;
+    try {
+      const res = await fetch(AUDIT_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ resume: auditResumeText }) });
+      data = await res.json();
+      if (!res.ok) { out.textContent = data.error || "Something went wrong."; return; }
+    } catch (e) { out.textContent = "Network problem. Please try again."; return; }
+
+    const a = data.audit || {};
+    let html = "<h2>Your audit</h2><p>" + (a.overallTake || "") + "</p>";
+    if (a.topPriority) html += "<div class='card priority'><span class='flag'>Fix first:</span> " + a.topPriority + "</div>";
+    if (Array.isArray(a.redFlags)) a.redFlags.forEach((f) => { html += "<div class='card'><span class='flag'>" + (f.flag||"") + ".</span> " + (f.why||"") + " <em>Fix:</em> " + (f.fix||"") + "</div>"; });
+    out.innerHTML = html;
+    document.getElementById("audit-notify").style.display = "block";
+  });
+
+  document.getElementById("notify-btn").addEventListener("click", async () => {
+    const email = document.getElementById("notify-email").value;
+    const msg = document.getElementById("notify-msg");
+    if (!email) { msg.textContent = "Enter an email first."; return; }
+    msg.textContent = "Adding you...";
+    try {
+      const res = await fetch(NOTIFY_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+      msg.textContent = res.ok ? "You are on the list." : "That did not go through, try again.";
+    } catch (e) { msg.textContent = "Network problem, try again."; }
+  });
+</script>

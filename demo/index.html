@@ -1,0 +1,118 @@
+<!-- demo/index.html -->
+<!-- Aplyer demo, clean URL aplyer.ai/demo. Brand styled. -->
+<!-- Loads demo-frontend.js from the same folder. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+<style>
+  :root{--bg:#FFFFFF;--paper:#F5F7FA;--navy:#0D1829;--green:#1DB954;--green2:#22C55E;
+    --red:#E5373A;--text:#111111;--muted:#555555;--border:rgba(0,0,0,0.10);--r:8px;}
+  .aplyer-tool{font-family:'Lato',sans-serif;color:var(--text);background:var(--bg);max-width:760px;margin:0 auto;padding:32px 24px;line-height:1.5;}
+  .aplyer-tool h1{color:var(--navy);font-weight:700;font-size:30px;margin:0 0 6px;}
+  .aplyer-tool .wd{font-family:'Lato',sans-serif;font-weight:700;color:var(--green);font-size:14px;letter-spacing:.02em;margin:0 0 18px;}
+  .aplyer-tool .sub{color:var(--muted);font-size:16px;margin:0 0 20px;}
+  .aplyer-tool .drop-zone{border:2px dashed var(--green);background:var(--paper);border-radius:var(--r);padding:28px;text-align:center;color:var(--muted);cursor:pointer;transition:all .15s;}
+  .aplyer-tool .drop-zone.dragging{background:rgba(29,185,84,0.10);}
+  .aplyer-tool .status{font-size:14px;color:var(--muted);margin:8px 0 14px;}
+  .aplyer-tool label.fld{display:block;font-weight:700;color:var(--navy);font-size:14px;margin:14px 0 6px;}
+  .aplyer-tool textarea,.aplyer-tool input[type=text]{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:var(--r);font-family:'Lato',sans-serif;font-size:15px;box-sizing:border-box;}
+  .aplyer-tool textarea{min-height:110px;resize:vertical;}
+  .aplyer-tool .clar{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media (max-width:560px){.aplyer-tool .clar{grid-template-columns:1fr;}}
+  .aplyer-tool .row{display:flex;align-items:center;gap:14px;margin:16px 0 6px;flex-wrap:wrap;}
+  .aplyer-tool button{background:var(--green);color:#000;border:none;border-radius:var(--r);padding:14px 32px;font-family:'Lato',sans-serif;font-weight:700;font-size:15px;cursor:pointer;letter-spacing:.02em;transition:all .15s;}
+  .aplyer-tool button:hover{background:var(--green2);}
+  .aplyer-tool .cmp{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+  .aplyer-tool .out-wrap{margin-top:20px;}
+  .aplyer-tool .out-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  .aplyer-tool .out-grid.two{grid-template-columns:1fr 1fr;}
+  @media (max-width:620px){.aplyer-tool .out-grid.two{grid-template-columns:1fr;}}
+  .aplyer-tool .out-card label{display:block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;}
+  .aplyer-tool .out-card.wdna label{color:var(--green);}
+  .aplyer-tool .out-card.plain label{color:var(--muted);}
+  .aplyer-tool .out-card textarea{min-height:200px;}
+</style>
+
+<div class="aplyer-tool">
+  <h1>See Aplyer write in your voice.</h1>
+  <div class="wd">Powered by WriteDNA Technology&trade;</div>
+  <p class="sub">Upload your resume, paste a job and a question, and watch the answer come back in your voice. Edit it, and Aplyer learns how you write.</p>
+
+  <div id="resume-drop" class="drop-zone">Drag your resume here, or click to upload. PDF, DOCX, or TXT.</div>
+  <input id="resume-input-hidden" type="file" accept=".pdf,.docx,.txt" style="display:none;" />
+  <p id="resume-status" class="status"></p>
+
+  <label class="fld">Job description</label>
+  <textarea id="job-description" placeholder="Paste the job description"></textarea>
+
+  <label class="fld">Application question</label>
+  <input type="text" id="application-question" placeholder="Paste one application question" />
+
+  <label class="fld">Two quick prompts (optional, they sharpen the answer)</label>
+  <div class="clar">
+    <input type="text" id="clar-1" placeholder="Which experience fits best?" />
+    <input type="text" id="clar-2" placeholder="Anything to emphasize or avoid?" />
+  </div>
+
+  <div class="row">
+    <button id="generate-btn">Generate my answer</button>
+    <label class="cmp"><input type="checkbox" id="compare-toggle" /> Show generic AI answer side by side</label>
+  </div>
+
+  <div class="out-wrap">
+    <div class="out-grid" id="out-grid">
+      <div class="out-card wdna">
+        <label>Your voice, by WriteDNA</label>
+        <textarea id="answer-output" placeholder="Your answer appears here, fully editable"></textarea>
+      </div>
+      <div class="out-card plain" id="plain-card" style="display:none;">
+        <label>Generic AI, no voice profile</label>
+        <textarea id="plain-output" placeholder="The generic version appears here"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="demo-frontend.js"></script>
+<script>
+  AplyerDemo.wireUpload("resume-drop", "resume-input-hidden", "resume-status");
+
+  const grid = document.getElementById("out-grid");
+  const plainCard = document.getElementById("plain-card");
+  const compareToggle = document.getElementById("compare-toggle");
+  compareToggle.addEventListener("change", () => {
+    const on = compareToggle.checked;
+    grid.classList.toggle("two", on);
+    plainCard.style.display = on ? "block" : "none";
+  });
+
+  document.getElementById("generate-btn").addEventListener("click", () => {
+    AplyerDemo.generate(
+      {
+        jobDescription: document.getElementById("job-description").value,
+        question: document.getElementById("application-question").value,
+        clarifyingAnswers: [
+          document.getElementById("clar-1").value,
+          document.getElementById("clar-2").value
+        ],
+        compare: compareToggle.checked
+      },
+      document.getElementById("answer-output"),
+      document.getElementById("generate-btn"),
+      document.getElementById("plain-output")
+    );
+  });
+
+  // Edit capture: when the candidate changes the answer and clicks away,
+  // log the edit so the memory bank learns their style.
+  document.getElementById("answer-output")
+    .addEventListener("blur", () => AplyerDemo.captureEdit(document.getElementById("answer-output")));
+</script>

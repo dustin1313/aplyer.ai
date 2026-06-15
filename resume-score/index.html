@@ -1,0 +1,136 @@
+<!-- resume-score.html -->
+<!-- Resume Score vs Job, a free standing tool for Reddit and direct -->
+<!-- sharing. No email gate. Results first, then an optional notify box. -->
+<!-- Goes in the aplyer.ai repo. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+<style>
+  :root{--bg:#FFFFFF;--paper:#F5F7FA;--navy:#0D1829;--green:#1DB954;--green2:#22C55E;
+    --red:#E5373A;--amber:#E0A100;--text:#111111;--muted:#555555;--border:rgba(0,0,0,0.10);--r:8px;}
+  .aplyer-tool{font-family:'Lato',sans-serif;color:var(--text);background:var(--bg);max-width:720px;margin:0 auto;padding:32px 24px;line-height:1.5;}
+  .aplyer-tool h1{color:var(--navy);font-weight:700;font-size:30px;margin:0 0 6px;}
+  .aplyer-tool .sub{color:var(--muted);font-size:16px;margin:0 0 20px;}
+  .aplyer-tool .drop-zone{border:2px dashed var(--green);background:var(--paper);border-radius:var(--r);padding:28px;text-align:center;color:var(--muted);cursor:pointer;transition:all .15s;}
+  .aplyer-tool .drop-zone.dragging{background:rgba(29,185,84,0.10);}
+  .aplyer-tool .status{font-size:14px;color:var(--muted);margin:8px 0 14px;}
+  .aplyer-tool textarea{width:100%;min-height:120px;padding:13px 14px;border:1px solid var(--border);border-radius:var(--r);font-family:'Lato',sans-serif;font-size:15px;margin:0 0 14px;resize:vertical;}
+  .aplyer-tool button{background:var(--green);color:#000;border:none;border-radius:var(--r);padding:14px 32px;font-family:'Lato',sans-serif;font-weight:700;font-size:15px;cursor:pointer;letter-spacing:.02em;transition:all .15s;}
+  .aplyer-tool button:hover{background:var(--green2);}
+  .aplyer-tool .results{margin-top:24px;}
+  .gauge-wrap{max-width:560px;margin:8px 0 18px;}
+  .gauge-number{font-family:'Lato',sans-serif;font-weight:900;font-size:44px;color:var(--navy);margin:0 0 6px;}
+  .gauge-track{width:100%;height:18px;background:var(--paper);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .gauge-fill{height:100%;width:0%;border-radius:10px;transition:width 600ms ease;}
+  .gauge-label{font-size:14px;color:var(--muted);margin-top:8px;}
+  .kw{font-size:14px;margin:6px 0;} .kw strong{color:var(--navy);}
+  .aplyer-tool .notify{margin-top:22px;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:18px;display:none;}
+  .aplyer-tool .notify input{padding:11px 13px;border:1px solid var(--border);border-radius:var(--r);font-family:'Lato',sans-serif;font-size:14px;width:260px;max-width:100%;margin-right:8px;}
+  .aplyer-tool .notify .small-btn{padding:11px 18px;font-size:14px;}
+  .aplyer-tool .foot{margin-top:28px;font-size:13px;color:var(--muted);}
+  .aplyer-tool .foot a{color:var(--green);text-decoration:none;}
+</style>
+
+<div class="aplyer-tool">
+  <h1>Resume Score vs the Job</h1>
+  <p class="sub">A free tool. See how your resume matches a job description, the way an ATS reads it. No signup.</p>
+
+  <div id="score-drop" class="drop-zone">Drag your resume here, or click. PDF, DOCX, or TXT.</div>
+  <p id="score-status" class="status"></p>
+  <textarea id="score-jd" placeholder="Paste the job description"></textarea>
+  <button id="score-run">Score my resume</button>
+
+  <div id="score-results" class="results"></div>
+
+  <div id="score-notify" class="notify">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:8px;">Optional: hear when the full Aplyer tool launches.</div>
+    <input id="notify-email" type="email" placeholder="your@email.com" />
+    <button class="small-btn" id="notify-btn">Notify me</button>
+    <div id="notify-msg" style="font-size:13px;color:var(--muted);margin-top:8px;"></div>
+  </div>
+</div>
+
+<script>
+  const SCORE_ENDPOINT = "https://aplyer-api.vercel.app/api/resume-score";
+  const NOTIFY_ENDPOINT = "https://aplyer-api.vercel.app/api/notify";
+  let scoreResumeText = "";
+
+  const parseFile = async (file) => {
+    const n = (file.name || "").toLowerCase();
+    if (n.endsWith(".txt")) return await file.text();
+    if (n.endsWith(".docx")) { const buf = await file.arrayBuffer(); return (await window.mammoth.extractRawText({ arrayBuffer: buf })).value; }
+    if (n.endsWith(".pdf")) {
+      const buf = await file.arrayBuffer();
+      const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
+      let t = "";
+      for (let i = 1; i <= pdf.numPages; i++) { const pg = await pdf.getPage(i); const c = await pg.getTextContent(); t += c.items.map((x)=>x.str).join(" ") + "\n"; }
+      return t;
+    }
+    throw new Error("Please upload a .pdf, .docx, or .txt resume.");
+  };
+
+  const zone = document.getElementById("score-drop");
+  const input = document.createElement("input");
+  input.type = "file"; input.accept = ".pdf,.docx,.txt"; input.style.display = "none"; document.body.appendChild(input);
+  const status = document.getElementById("score-status");
+  const onFile = async (file) => {
+    if (!file) return;
+    status.textContent = "Reading your resume...";
+    try { scoreResumeText = await parseFile(file); status.textContent = "Loaded: " + file.name; }
+    catch (e) { scoreResumeText = ""; status.textContent = e.message; }
+  };
+  zone.addEventListener("click", () => input.click());
+  input.addEventListener("change", (e) => onFile(e.target.files[0]));
+  ["dragenter","dragover"].forEach((ev)=>zone.addEventListener(ev,(e)=>{e.preventDefault();zone.classList.add("dragging");}));
+  ["dragleave","drop"].forEach((ev)=>zone.addEventListener(ev,(e)=>{e.preventDefault();zone.classList.remove("dragging");}));
+  zone.addEventListener("drop",(e)=>onFile(e.dataTransfer.files[0]));
+
+  const colorFor = (s) => (s >= 75 ? "#1DB954" : s >= 50 ? "#E0A100" : "#E5373A");
+
+  document.getElementById("score-run").addEventListener("click", async () => {
+    const jd = document.getElementById("score-jd").value;
+    const out = document.getElementById("score-results");
+    if (!scoreResumeText) { out.textContent = "Upload your resume first."; return; }
+    if (!jd) { out.textContent = "Paste the job description."; return; }
+    out.textContent = "Scoring your resume...";
+    let data;
+    try {
+      const res = await fetch(SCORE_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ resume: scoreResumeText, jobDescription: jd }) });
+      data = await res.json();
+      if (!res.ok) { out.textContent = data.error || "Something went wrong."; return; }
+    } catch (e) { out.textContent = "Network problem. Please try again."; return; }
+
+    const s = data.score || {};
+    const n = Math.max(0, Math.min(100, parseInt(s.matchScore, 10) || 0));
+    const color = colorFor(n);
+    let html = "<div class='gauge-wrap'>";
+    html += "<div class='gauge-number' style='color:" + color + "'>" + n + " / 100</div>";
+    html += "<div class='gauge-track'><div class='gauge-fill' id='gfill' style='background:" + color + "'></div></div>";
+    html += "<div class='gauge-label'>" + (s.summary || "") + "</div></div>";
+    if (Array.isArray(s.keywordsPresent) && s.keywordsPresent.length) html += "<p class='kw'><strong>Already covered:</strong> " + s.keywordsPresent.join(", ") + "</p>";
+    if (Array.isArray(s.keywordsMissing) && s.keywordsMissing.length) html += "<p class='kw'><strong>Missing:</strong> " + s.keywordsMissing.join(", ") + "</p>";
+    if (Array.isArray(s.sectionSuggestions) && s.sectionSuggestions.length) { html += "<p class='kw'><strong>Where to fix it:</strong></p><ul>"; s.sectionSuggestions.forEach((x)=>{html += "<li class='kw'>" + x + "</li>";}); html += "</ul>"; }
+    out.innerHTML = html;
+    requestAnimationFrame(() => { document.getElementById("gfill").style.width = n + "%"; });
+    document.getElementById("score-notify").style.display = "block";
+  });
+
+  document.getElementById("notify-btn").addEventListener("click", async () => {
+    const email = document.getElementById("notify-email").value;
+    const msg = document.getElementById("notify-msg");
+    if (!email) { msg.textContent = "Enter an email first."; return; }
+    msg.textContent = "Adding you...";
+    try {
+      const res = await fetch(NOTIFY_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+      msg.textContent = res.ok ? "You are on the list." : "That did not go through, try again.";
+    } catch (e) { msg.textContent = "Network problem, try again."; }
+  });
+</script>
