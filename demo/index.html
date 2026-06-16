@@ -39,6 +39,8 @@
   .aplyer-tool .out-card.wdna label{color:var(--green);}
   .aplyer-tool .out-card.plain label{color:var(--muted);}
   .aplyer-tool .out-card textarea{min-height:200px;}
+  .aplyer-tool .q-chip{background:#FFFFFF;border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;color:var(--navy);cursor:pointer;transition:all .15s;}
+  .aplyer-tool .q-chip:hover{border-color:var(--green);color:var(--green);}
 </style>
 
 <div class="aplyer-tool">
@@ -55,6 +57,13 @@
 
   <label class="fld">Application question</label>
   <input type="text" id="application-question" placeholder="Paste one application question" />
+  <div style="margin:8px 0 4px;font-size:13px;color:#555555;">Or try a common one:</div>
+  <div id="q-presets" style="display:flex;flex-wrap:wrap;gap:8px;">
+    <button type="button" class="q-chip" data-q="Why do you want to work here?">Why this company?</button>
+    <button type="button" class="q-chip" data-q="Describe a time you faced a significant challenge and how you handled it.">A challenge you solved</button>
+    <button type="button" class="q-chip" data-q="What are your greatest strengths, and how would they help in this role?">Your strengths</button>
+    <button type="button" class="q-chip" data-q="Why should we hire you over other candidates?">Why hire you?</button>
+  </div>
 
   <label class="fld">Two quick prompts (optional, they sharpen the answer)</label>
   <div class="clar">
@@ -92,6 +101,10 @@
     const on = compareToggle.checked;
     grid.classList.toggle("two", on);
     plainCard.style.display = on ? "block" : "none";
+  });
+
+  document.querySelectorAll(".q-chip").forEach((b)=>{
+    b.addEventListener("click",()=>{ document.getElementById("application-question").value = b.getAttribute("data-q"); });
   });
 
   document.getElementById("generate-btn").addEventListener("click", () => {
