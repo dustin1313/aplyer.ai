@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:title" content="Aplyer.ai, Skipping job applications because of the long written questions?">
-<meta property="og:description" content="60% of job seekers abandon applications that take too long, and the written questions are the hardest part. Aplyer completes every question in your voice using your resume, each answer in seconds. Powered by WriteDNA Technology™.">
+<meta property="og:title" content="Aplyer.ai - Stop sounding like ChatGPT. Start sounding like you.">
+<meta property="og:description" content="Application questions answered in your voice in seconds. Aplyer learns how you write and gets sharper with every use. Built by a recruiter who spent 8 years reading these answers.">
 <meta property="og:image" content="https://aplyer.ai/aplyer_og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://aplyer.ai/aplyer_og.jpg">
-<title>Aplyer.ai, Stop Skipping Job Applications</title>
+<title>Aplyer.ai - Stop Sounding Like ChatGPT. Start Sounding Like You.</title>
 <link rel="icon" type="image/png" sizes="32x32" href="icon%2032.png">
 <link rel="icon" type="image/png" sizes="16x16" href="icon%2016.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icon%20180.png">
@@ -54,7 +54,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .nav-btn{background:var(--green);color:#000;padding:15px 36px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Lato',sans-serif;letter-spacing:.02em;transition:all .15s}
 .nav-btn:hover{background:var(--green2)}
 
-.cover{padding:104px 24px 0;background:var(--bg)}
+.cover{padding:104px 24px 24px;background:var(--bg)}
 .cover-inner{max-width:1100px;margin:0 auto}
 
 .form-header{background:var(--paper);border:1px solid var(--border2);border-radius:12px;padding:36px 40px;margin-bottom:0;position:relative;overflow:hidden}
@@ -206,9 +206,14 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
 .f4{opacity:0;animation:fadeUp .5s ease .5s forwards}
 .f5{opacity:0;animation:fadeUp .5s ease .65s forwards}
 
+.specs-row{display:grid;grid-template-columns:1fr 2fr 1fr 1fr;gap:12px;align-items:start;text-align:center}
+.gap-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+
 @media(max-width:700px){
   .form-header{padding:28px 22px}
   .applicant-row{grid-template-columns:1fr 1fr}
+  .specs-row{grid-template-columns:1fr 1fr}
+  .gap-grid{grid-template-columns:1fr}
   .stats-row{grid-template-columns:1fr 1fr}
   .steps-row{grid-template-columns:1fr}
   .ba-mini{grid-template-columns:1fr;gap:8px}.ba-arrow{flex-direction:row;justify-content:center}
@@ -225,6 +230,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
   .nav-btn{padding:11px 14px;font-size:13px;letter-spacing:0;white-space:nowrap}
   .logo-name{font-size:22px}
   .applicant-row{grid-template-columns:1fr}
+  .specs-row{grid-template-columns:1fr}
   .stats-row{grid-template-columns:1fr 1fr}
   .q-section{padding:0 12px}
   .q-label{padding:16px 16px 0}
@@ -286,44 +292,55 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
   <div class="cover-inner">
     <div class="form-header f1" style="text-align:center;">
       <div class="app-type" style="text-align:center;font-size:16px;letter-spacing:.15em;margin-bottom:12px;">Job Application, Aplyer.ai</div>
-      <h1 class="form-title" style="text-align:center;font-size:clamp(32px,5vw,52px);">Skipping job applications because of<br>the <span class="red">long written questions?</span></h1>
+      <h1 class="form-title" style="text-align:center;font-size:clamp(32px,5vw,52px);">Stop sounding like <span class="red">ChatGPT.</span><br>Start sounding like <span class="grn">you.</span></h1>
 
-      <div style="display:inline-flex;align-items:center;gap:16px;background:#FEF2F2;border:1.5px solid #FECACA;border-radius:12px;padding:14px 28px;margin:20px auto 8px;text-align:left;">
-        <span style="font-family:'Lato',sans-serif;font-size:48px;font-weight:900;color:#E5373A;line-height:1;letter-spacing:-2px;flex-shrink:0;">60%</span>
-        <div>
-          <div style="font-family:'Lato',sans-serif;font-size:16px;font-weight:700;color:#0D1829;">of job seekers do the same thing.</div>
-          <div style="font-family:'Lato',sans-serif;font-size:13px;font-weight:700;color:#888888;margin-top:3px;">Source: CareerBuilder</div>
-        </div>
+      <div style="max-width:600px;margin:20px auto 0;font-family:'Lato',sans-serif;font-size:18px;font-weight:400;color:#222222;line-height:1.65;text-align:center;">Application questions answered in your voice in seconds. Aplyer learns how you write and gets sharper with every use.</div>
+
+      <div style="margin:20px auto 0;font-family:'Lato',sans-serif;font-size:18px;font-weight:700;color:#555555;text-align:center;">Built by a recruiter who spent 8 years reading these answers.</div>
+
+      <div style="text-align:center;margin-top:28px;">
+        <a href="/demo" style="font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:#000;background:#1DB954;text-decoration:none;border-radius:8px;padding:15px 36px;letter-spacing:.02em;display:inline-block;transition:background .15s;" onmouseover="this.style.background='#22C55E'" onmouseout="this.style.background='#1DB954'">Try the free demo</a>
       </div>
 
-      <div style="max-width:640px;text-align:center;margin:16px auto 8px;font-family:'Lato',sans-serif;font-size:16px;font-weight:400;color:#0D1829;line-height:1.6;"><span style="font-weight:700;color:#1DB954;">Powered by WriteDNA Technology™</span> - our proprietary engine that reads each job on the employer's careers page. Voice matching learns how you write, gap-analysis gives you a match score and strengthens your application, and every answer uses the employer's own words, the keywords their ATS scans for, in your voice.</div>
-      <div style="max-width:520px;margin:18px auto 8px;background:#FFFFFF;border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:18px;text-align:left;box-shadow:0 2px 12px rgba(13,24,41,0.06);">
-        <div class="ms-ring" style="flex-shrink:0;width:84px;height:84px;border-radius:50%;background:conic-gradient(#1DB954 0% 92%,#E6EAF0 92% 100%);display:flex;align-items:center;justify-content:center;">
-          <div style="width:64px;height:64px;border-radius:50%;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-            <span id="ms-score" style="font-family:'Lato',sans-serif;font-size:22px;font-weight:900;color:#0D1829;line-height:1;">92%</span>
-            <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:#888888;text-transform:uppercase;">match</span>
+      <div style="text-align:center;margin-top:14px;"><a href="#free-tools" style="font-family:'Lato',sans-serif;font-size:14px;font-weight:700;color:#1DB954;text-decoration:none;border-bottom:2px solid rgba(29,185,84,0.35);padding-bottom:2px;">Or use our recruiter tools, no account needed</a></div>
+
+      <div style="text-align:center;margin-top:18px;font-family:'Lato',sans-serif;font-size:12px;font-weight:700;color:#1DB954;letter-spacing:.08em;">Powered by WriteDNA Technology&#8482;</div>
+    </div>
+
+    <div style="background:var(--paper);border:1px solid var(--border2);border-radius:12px;margin-top:20px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--green));border-radius:12px 12px 0 0;"></div>
+      <div style="padding:32px 40px;" class="gap-grid">
+
+        <!-- LEFT: How Aplyer reads the job -->
+        <div style="display:flex;align-items:center;gap:24px;">
+          <div style="flex-shrink:0;width:110px;height:110px;border-radius:50%;background:conic-gradient(#1DB954 0% 74%,#E0E4EA 74% 100%);display:flex;align-items:center;justify-content:center;">
+            <div style="width:84px;height:84px;border-radius:50%;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <span style="font-family:'Lato',sans-serif;font-size:32px;font-weight:900;color:#0D1829;line-height:1;">74%</span>
+              <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;color:#666666;text-transform:uppercase;text-align:center;display:block;margin-top:3px;">overlap</span>
+            </div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#1DB954;font-weight:500;margin-bottom:6px;">How Aplyer reads the job</div>
+            <div style="font-family:'Lato',sans-serif;font-size:17px;font-weight:700;color:#0D1829;line-height:1.35;margin-bottom:10px;">Senior Product Manager &middot; Stripe</div>
+            <div style="font-family:'Lato',sans-serif;font-size:15px;color:#0F7A2E;font-weight:600;line-height:1.7;">&check; Found in your resume: product strategy, analytics, leadership</div>
+            <div style="font-family:'Lato',sans-serif;font-size:15px;color:#92400E;font-weight:600;line-height:1.7;">&#9888; Strengthen by adding a result with a number</div>
           </div>
         </div>
-        <div style="flex:1;">
-          <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#1DB954;margin-bottom:5px;">Gap Analysis</div>
-          <div id="ms-jobtitle" style="font-family:'Lato',sans-serif;font-size:14px;font-weight:700;color:#0D1829;line-height:1.35;margin-bottom:6px;">Senior Product Manager &middot; Stripe</div>
-          <div id="ms-strong" style="font-family:'Lato',sans-serif;font-size:13px;color:#16893E;line-height:1.5;">&check; Strong on product strategy, analytics, leadership</div>
-          <div id="ms-strengthen" style="font-family:'Lato',sans-serif;font-size:13px;color:#B45309;line-height:1.5;">&#9888; Strengthen by adding a result with a number</div>
+
+        <!-- RIGHT: How Aplyer writes your answer -->
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#1DB954;font-weight:500;margin-bottom:10px;">How Aplyer writes your answer</div>
+          <div style="background:#FFFFFF;border:2px solid rgba(29,185,84,0.35);border-radius:8px;padding:16px;position:relative;">
+            <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:#1DB954;border-radius:3px 0 0 3px;"></div>
+            <div style="font-family:'Lato',sans-serif;font-size:14px;color:#222222;line-height:1.75;padding-left:6px;">When our team lost a $2.4M account three days before a product launch, I pushed to ship on schedule rather than delay. We launched, landed two new accounts within the quarter, and the original client returned six months later after seeing the results.<span style="display:inline-block;width:2px;height:1em;background:#1DB954;vertical-align:text-bottom;margin-left:2px;animation:blink 1.1s infinite;"></span></div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:12px;font-family:'DM Mono',monospace;color:#1DB954;font-weight:700;">&#10003; Voice Match</span></div>
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:12px;font-family:'DM Mono',monospace;color:#1DB954;font-weight:700;">&#10003; Low AI Signature</span></div>
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:12px;font-family:'DM Mono',monospace;color:#1DB954;font-weight:700;">&#10003; Uses Your Resume</span></div>
+          </div>
         </div>
-      </div>
 
-      <div style="text-align:center;margin:0 auto 8px;font-family:'Lato',sans-serif;font-size:14px;font-weight:400;color:#555555;line-height:1.5;">A full application in under two minutes.</div>
-
-      
-      <button onclick="document.querySelector('.f4').scrollIntoView({behavior:'smooth'})" style="display:inline-block;padding:15px 36px;background:var(--green);color:#000;border:none;border-radius:8px;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.02em;transition:background .15s;margin-top:16px;">What makes Aplyer different →</button>
-      <div style="text-align:center;margin-top:14px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;align-items:center;"><a href="/demo" style="font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:#000;background:#1DB954;text-decoration:none;border-radius:8px;padding:11px 22px;letter-spacing:.02em;">Try the live demo →</a><a href="#free-tools" style="font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:#1DB954;text-decoration:none;border-bottom:2px solid rgba(29,185,84,0.35);padding-bottom:2px;">Or try our free recruiter tools, no signup →</a></div>
-      <div class="applicant-row" style="margin-top:28px;grid-template-columns:repeat(3,1fr);">
-        <div class="field-mini"><label>Status</label><div class="val green">● Early Access Open</div></div>
-        <div class="field-mini"><label>Works on</label><div class="val">Workday · Greenhouse · Lever · Any employer careers page you reach from Indeed, LinkedIn, or any job board</div></div>
-        <div class="field-mini"><label>Requires</label><div class="val">Google Chrome, <a href="https://www.google.com/chrome/" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;font-weight:700;">Download free →</a></div></div>
-      </div>
-      <div style="text-align:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
-        <div class="field-mini" style="display:inline-block;text-align:center;"><label>Pricing</label><div class="val">Free to join · Founding member pricing at launch</div></div>
       </div>
     </div>
   </div>
@@ -407,13 +424,13 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
         <div class="steps-row">
           <div class="step-box"><div class="step-n">1 / SETUP</div><div class="step-t">Upload your resume once</div><div class="step-b">Drag and drop on install. Aplyer learns your tone, achievements, and writing style. Add writing samples for even better accuracy. Never upload again. Your voice memory starts building immediately.</div></div>
           <div class="step-box"><div class="step-n">2 / DETECT</div><div class="step-t">Activates automatically, you never leave the page</div><div class="step-b">The extension wakes up the moment you land on any employer careers page, Workday, Greenhouse, Lever, and more. It also activates on employer careers pages you reach from Indeed, LinkedIn, or any other job board. No switching to another app. No opening a new window. No copying and pasting. You stay on the job page the entire time. Aplyer works inside it.</div></div>
-          <div class="step-box"><div class="step-n">3 / APPLY</div><div class="step-t">Every question answered. Every field filled.</div><div class="step-b">Application questions get answers in your voice using your real experience. Standard fields like name, address, and work history fill automatically. Review everything, edit anything, hit submit.</div></div>
+          <div class="step-box"><div class="step-n">3 / APPLY</div><div class="step-t">Every question answered. Every field filled.</div><div class="step-b">Application questions get answers in your voice using your resume. Standard fields like name, address, and work history fill automatically. Review everything, edit anything, hit submit.</div></div>
         </div>
-        <div class="ans-body" style="margin-bottom:10px;">After generating each answer, Aplyer shows three quality indicators. All three are green when the answer is strong, your voice is matched, the AI signature is low, and your real experience is used. If any indicator is not green, Aplyer flags it and prompts you to review before submitting. You are always in control.</div>
+        <div class="ans-body" style="margin-bottom:10px;">After generating each answer, Aplyer shows three quality indicators. All three are green when the answer is strong, your voice is matched, the AI signature is low, and your resume is used. If any indicator is not green, Aplyer flags it and prompts you to review before submitting. You are always in control.</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;width:100%;">
           <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:var(--field2);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#1DB954;font-weight:700;">✓ Voice Match</span></div>
           <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(234,179,8,0.15);border:1.5px solid #eab308;border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#eab308;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#ca9a00;font-weight:700;">⚠ Low AI Signature</span></div>
-          <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(229,55,58,0.12);border:1.5px solid #E5373A;border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#E5373A;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#E5373A;">✕ Real Experience, Not found</span></div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(229,55,58,0.12);border:1.5px solid #E5373A;border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#E5373A;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#E5373A;">✕ Resume Not Used</span></div>
         </div>
       </div>
     </div>
@@ -479,7 +496,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
               <td style="padding:14px 18px;text-align:center;background:rgba(29,185,84,0.06);color:#1DB954;font-size:18px;font-weight:700;">✓</td>
             </tr>
             <tr style="border-bottom:1px solid rgba(0,0,0,0.07);">
-              <td style="padding:14px 18px;color:#111111;font-weight:600;">Uses your actual resume<br><span style="font-size:13px;font-weight:400;color:#555555;">Answers grounded in your real experience</span></td>
+              <td style="padding:14px 18px;color:#111111;font-weight:600;">Uses your actual resume<br><span style="font-size:13px;font-weight:400;color:#555555;">Answers grounded in your resume</span></td>
               <td style="padding:14px 18px;text-align:center;color:#333333;font-size:14px;">Partial</td>
               <td style="padding:14px 18px;text-align:center;background:rgba(29,185,84,0.06);color:#1DB954;font-size:18px;font-weight:700;">✓</td>
             </tr>
@@ -614,6 +631,15 @@ function toggleFAQItem(header) {
 </script>
 
 
+
+<div style="padding:0 24px;max-width:1100px;margin:0 auto;">
+  <div class="specs-row">
+    <div class="field-mini" style="text-align:center;"><label>Status</label><div class="val green">&#9679; Early Access Open</div></div>
+    <div class="field-mini" style="text-align:center;"><label>Works on</label><div class="val">Workday · Greenhouse · Lever · Any employer careers page you reach from Indeed, LinkedIn, or any job board</div></div>
+    <div class="field-mini" style="text-align:center;"><label>Requires</label><div class="val">Google Chrome, <a href="https://www.google.com/chrome/" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;font-weight:700;">Download here</a></div></div>
+    <div class="field-mini" style="text-align:center;"><label>Pricing</label><div class="val">Free to join · Founding member pricing at launch</div></div>
+  </div>
+</div>
 
 <div class="submit-section" id="waitlist-form">
   <div class="submit-block">
