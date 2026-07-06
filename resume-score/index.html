@@ -14,9 +14,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 
 <style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#FFFFFF;font-family:'Lato',sans-serif;}
   :root{--bg:#FFFFFF;--paper:#F5F7FA;--navy:#0D1829;--green:#1DB954;--green2:#22C55E;
     --red:#E5373A;--amber:#E0A100;--text:#111111;--muted:#555555;--border:rgba(0,0,0,0.10);--r:8px;}
-  .aplyer-tool{font-family:'Lato',sans-serif;color:var(--text);background:var(--bg);max-width:720px;margin:0 auto;padding:32px 24px;line-height:1.5;}
+
+  /* ── NAV ── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.10)}
+  .nav-inner{max-width:1080px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between}
+  .logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo-name{font-family:'Lato',sans-serif;font-size:26px;font-weight:700;color:var(--green);letter-spacing:-.01em}
+  .logo-tag{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);font-family:'Lato',sans-serif}
+  .logo-texts{display:flex;flex-direction:column;gap:1px}
+  .nav-btn{background:var(--green);color:#000;padding:15px 36px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Lato',sans-serif;letter-spacing:.02em;transition:all .15s;text-decoration:none;display:inline-block;}
+  .nav-btn:hover{background:var(--green2)}
+
+  /* ── TOOL ── */
+  .aplyer-tool{font-family:'Lato',sans-serif;color:var(--text);background:var(--bg);max-width:720px;margin:0 auto;padding:32px 24px;line-height:1.5;min-height:calc(100vh - 68px - 80px);display:flex;flex-direction:column;justify-content:center;padding-top:100px;}
   .aplyer-tool h1{color:var(--navy);font-weight:700;font-size:30px;margin:0 0 6px;}
   .aplyer-tool .sub{color:var(--muted);font-size:16px;margin:0 0 20px;}
   .aplyer-tool .drop-zone{border:2px dashed var(--green);background:var(--paper);border-radius:var(--r);padding:28px;text-align:center;color:var(--muted);cursor:pointer;transition:all .15s;}
@@ -35,9 +49,51 @@
   .aplyer-tool .notify{margin-top:22px;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:18px;display:none;}
   .aplyer-tool .notify input{padding:11px 13px;border:1px solid var(--border);border-radius:var(--r);font-family:'Lato',sans-serif;font-size:14px;width:260px;max-width:100%;margin-right:8px;}
   .aplyer-tool .notify .small-btn{padding:11px 18px;font-size:14px;}
-  .aplyer-tool .foot{margin-top:28px;font-size:13px;color:var(--muted);}
-  .aplyer-tool .foot a{color:var(--green);text-decoration:none;}
+
+  /* ── FOOTER ── */
+  footer{border-top:1px solid var(--border);padding:20px 24px}
+  .foot-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .foot-p{font-size:13px;color:#333333;font-family:'Lato',sans-serif;font-weight:400}
+  .foot-links{display:flex;gap:16px}
+  .foot-links a{font-size:13px;color:#333333;text-decoration:none;font-family:'Lato',sans-serif;font-weight:400;transition:color .15s}
+  .foot-links a:hover{color:#222222}
+
+  /* ── MOBILE ── */
+  @media(max-width:480px){
+    .logo-tag{display:none}
+    .nav-btn{padding:11px 14px;font-size:13px;letter-spacing:0;white-space:nowrap}
+    .logo-name{font-size:22px}
+    .aplyer-tool{padding-top:88px;}
+    .aplyer-tool h1{font-size:24px;}
+  }
 </style>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo-wrap" href="https://aplyer.ai">
+      <svg width="32" height="32" viewBox="0 0 88 88" fill="none">
+        <defs>
+          <linearGradient id="navG" x1="0" y1="44" x2="88" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#E5373A"/>
+            <stop offset="45%" stop-color="#E5373A"/>
+            <stop offset="55%" stop-color="#1DB954"/>
+            <stop offset="100%" stop-color="#1DB954"/>
+          </linearGradient>
+        </defs>
+        <circle cx="44" cy="44" r="40" fill="#0D1829" stroke="url(#navG)" stroke-width="2"/>
+        <line x1="22" y1="28" x2="44" y2="44" stroke="#E5373A" stroke-width="5" stroke-linecap="round"/>
+        <line x1="22" y1="60" x2="44" y2="44" stroke="#E5373A" stroke-width="5" stroke-linecap="round"/>
+        <line x1="44" y1="44" x2="56" y2="56" stroke="#1DB954" stroke-width="5" stroke-linecap="round"/>
+        <line x1="56" y1="56" x2="72" y2="28" stroke="#1DB954" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="logo-texts">
+        <span class="logo-name">Aplyer.ai</span>
+        <span class="logo-tag">Stop Skipping Jobs</span>
+      </div>
+    </a>
+    <a class="nav-btn" href="https://aplyer.ai/#waitlist-form">Join the Waitlist</a>
+  </div>
+</nav>
 
 <div class="aplyer-tool">
   <h1>Resume Score vs the Job</h1>
@@ -57,6 +113,13 @@
     <div id="notify-msg" style="font-size:13px;color:var(--muted);margin-top:8px;"></div>
   </div>
 </div>
+
+<footer>
+  <div class="foot-inner">
+    <div style="font-size:12px;font-weight:700;color:#1DB954;letter-spacing:.08em;font-family:'Lato',sans-serif;">Powered by WriteDNA Technology&#8482;</div>
+    <div class="foot-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+</footer>
 
 <script>
   const SCORE_ENDPOINT = "https://aplyer-api.vercel.app/api/resume-score";
