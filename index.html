@@ -330,14 +330,10 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
         <!-- RIGHT: How Aplyer writes your answer -->
         <div>
           <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#1DB954;font-weight:500;margin-bottom:10px;">How Aplyer writes your answer</div>
+          <div style="font-family:'Lato',sans-serif;font-size:13px;font-weight:700;color:#555555;margin-bottom:8px;line-height:1.5;">Q: Describe a time you demonstrated leadership under pressure.</div>
           <div style="background:#FFFFFF;border:2px solid rgba(29,185,84,0.35);border-radius:8px;padding:16px;position:relative;">
             <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:#1DB954;border-radius:3px 0 0 3px;"></div>
             <div style="font-family:'Lato',sans-serif;font-size:14px;color:#222222;line-height:1.75;padding-left:6px;">When our team lost a $2.4M account three days before a product launch, I pushed to ship on schedule rather than delay. We launched, landed two new accounts within the quarter, and the original client returned six months later after seeing the results.<span style="display:inline-block;width:2px;height:1em;background:#1DB954;vertical-align:text-bottom;margin-left:2px;animation:blink 1.1s infinite;"></span></div>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
-            <div style="display:flex;align-items:center;gap:5px;background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:12px;font-family:'DM Mono',monospace;color:#1DB954;font-weight:700;">&#10003; Voice Match</span></div>
-            <div style="display:flex;align-items:center;gap:5px;background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:12px;font-family:'DM Mono',monospace;color:#1DB954;font-weight:700;">&#10003; Low AI Signature</span></div>
-            <div style="display:flex;align-items:center;gap:5px;background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:12px;font-family:'DM Mono',monospace;color:#1DB954;font-weight:700;">&#10003; Recruiter-Ready</span></div>
           </div>
         </div>
 
@@ -431,11 +427,12 @@ footer{border-top:1px solid var(--border);padding:20px 24px}
           <div class="step-box"><div class="step-n">2 / DETECT</div><div class="step-t">Activates automatically, you never leave the page</div><div class="step-b">The extension wakes up the moment you land on any employer careers page, Workday, Greenhouse, Lever, and more. It also activates on employer careers pages you reach from Indeed, LinkedIn, or any other job board. No switching to another app. No opening a new window. No copying and pasting. You stay on the job page the entire time. Aplyer works inside it.</div></div>
           <div class="step-box"><div class="step-n">3 / APPLY</div><div class="step-t">Every question answered. Every field filled.</div><div class="step-b">Application questions get answers in your voice using your resume. Standard fields like name, address, and work history fill automatically. Review everything, edit anything, hit submit.</div></div>
         </div>
-        <div class="ans-body" style="margin-bottom:10px;">After generating each answer, Aplyer shows three quality indicators. All three are green when the answer is strong, your voice is matched, the AI signature is low, and it follows the rules a recruiter looks for. If any indicator is not green, Aplyer flags it and prompts you to review before submitting. You are always in control.</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;width:100%;">
-          <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:var(--field2);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#1DB954;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#1DB954;font-weight:700;">✓ Voice Match</span></div>
-          <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(234,179,8,0.15);border:1.5px solid #eab308;border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#eab308;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#ca9a00;font-weight:700;">⚠ Low AI Signature</span></div>
-          <div style="display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(229,55,58,0.12);border:1.5px solid #E5373A;border-radius:20px;padding:6px 14px;flex:1;"><div style="width:6px;height:6px;border-radius:50%;background:#E5373A;flex-shrink:0;"></div><span style="font-size:13px;font-family:'DM Mono',monospace;color:#E5373A;">✕ Needs a fix</span></div>
+        <div class="ans-body" style="margin-bottom:10px;">After generating each answer, Aplyer checks it against two independent AI detectors and shows you a Human Score. The higher the score, the more your answer reads like you wrote it. You review everything before it submits. You are always in control.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;width:100%;justify-content:center;">
+          <div style="display:flex;align-items:center;gap:10px;background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,.35);border-radius:20px;padding:8px 18px;">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 0L20 4V10C20 16.08 14.16 21.54 10 22C5.84 21.54 0 16.08 0 10V4L10 0Z" fill="#1DB954"/><text x="10" y="14" text-anchor="middle" font-size="9" font-weight="700" fill="white" font-family="DM Mono,monospace">91</text></svg>
+            <div><span style="font-size:14px;font-family:'DM Mono',monospace;color:#1DB954;font-weight:700;">91% Human Score</span><br><span style="font-size:10px;font-family:'DM Mono',monospace;color:#888;">Verified by WriteDNA Technology</span></div>
+          </div>
         </div>
       </div>
     </div>
