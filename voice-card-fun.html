@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplyer Voice Card, fun version</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--white:#FFFFFF;--card:#F5F7FA;--navy:#0D1829;--green:#1DB954;--red:#E5373A;--line:#e4e9f0;--muted:#5b6675;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--white);color:var(--navy);font-family:"Lato",Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:32px 20px 60px;}
+  .eyebrow{font-family:"DM Mono",monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--green);font-weight:500;}
+  h1{font-weight:900;font-size:26px;line-height:1.12;margin:8px 0 6px;letter-spacing:-0.4px;}
+  .sub{color:var(--muted);font-size:15px;max-width:660px;margin-bottom:20px;}
+  .cmp{font-family:"DM Mono",monospace;font-size:12px;color:var(--muted);margin:16px 0 10px;text-transform:uppercase;letter-spacing:1px;}
+  .swap{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px;}
+  .swapBtn{font-family:"DM Mono",monospace;font-size:12px;padding:9px 12px;border-radius:9px;border:1px solid var(--line);background:#fff;cursor:pointer;transition:all .15s;color:var(--navy);}
+  .swapBtn:hover{border-color:var(--green);}
+  .swapBtn.on{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+  .row{display:grid;grid-template-columns:1fr;gap:26px;align-items:start;}
+  @media(min-width:720px){.row{grid-template-columns:340px 1fr;}}
+
+  .card{width:100%;max-width:340px;margin:0 auto;aspect-ratio:9/16;border-radius:24px;background-color:#0D1829;background-image:radial-gradient(130% 80% at 15% 0%, #1c3a2b 0%, rgba(13,24,41,0) 52%);color:#fff;padding:26px 22px;position:relative;overflow:hidden;box-shadow:0 22px 50px rgba(13,24,41,.28);display:flex;flex-direction:column;}
+  .card::before{content:"";position:absolute;left:-70px;bottom:-70px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,#1DB95433,transparent 70%);}
+  .cardTop{display:flex;justify-content:space-between;align-items:center;z-index:1;}
+  .brandMark{display:flex;align-items:center;gap:7px;}
+  .bDot{width:22px;height:22px;border-radius:6px;background:#fff;position:relative;}
+  .bDot::after{content:"";position:absolute;inset:30%;border-left:2.4px solid var(--green);border-bottom:2.4px solid var(--green);transform:rotate(-45deg) translateY(-8%);}
+  .bName{font-weight:900;font-size:14px;letter-spacing:-0.2px;}
+  .cardLabel{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#8ea0b5;}
+
+  .flair{align-self:flex-start;margin-top:22px;background:#1DB95422;border:1px solid #1DB95455;color:#7fe6a3;font-family:"DM Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.5px;padding:5px 11px;border-radius:20px;z-index:1;}
+  .arch{z-index:1;margin-top:14px;}
+  .archKick{font-family:"DM Mono",monospace;font-size:11px;color:#8ea0b5;text-transform:uppercase;letter-spacing:2px;}
+  .archName{font-weight:900;font-size:38px;line-height:0.98;letter-spacing:-1px;margin-top:6px;}
+  .archName .g{color:var(--green);}
+  .archTag{font-size:15px;line-height:1.45;color:#dbe4ee;margin-top:12px;}
+
+  .reads{z-index:1;margin-top:20px;padding-top:16px;border-top:1px solid #24344a;}
+  .read{font-size:13px;line-height:1.45;padding:7px 0;color:#e4ebf2;display:flex;gap:8px;}
+  .read .dot{color:var(--green);font-weight:900;}
+
+  .cardCta{z-index:1;margin-top:auto;padding-top:18px;display:flex;justify-content:space-between;align-items:flex-end;}
+  .cardCta .go{background:var(--green);color:#fff;font-weight:900;font-size:12.5px;padding:9px 14px;border-radius:8px;}
+  .cardCta .wd{font-family:"DM Mono",monospace;font-size:9px;color:#7d8aa0;text-transform:uppercase;letter-spacing:1px;text-align:right;line-height:1.3;}
+
+  .side h2{font-weight:900;font-size:18px;margin:2px 0 8px;}
+  .side p{font-size:14.5px;color:#33404f;line-height:1.6;margin-bottom:12px;}
+  .why{background:var(--card);border-left:3px solid var(--green);border-radius:0 10px 10px 0;padding:14px 16px;font-size:13.5px;color:#33404f;line-height:1.6;}
+  .why b{color:var(--navy);}
+  .foot{margin-top:34px;border-top:2px solid var(--navy);padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .foot .wd{font-weight:700;font-size:13px;}
+  .foot .sl{font-family:"DM Mono",monospace;font-size:12px;color:var(--red);text-transform:uppercase;letter-spacing:1px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">WriteDNA · Voice Card</div>
+  <h1>The fun version, no job talk anywhere</h1>
+  <p class="sub">A writing-personality card built to feel like a fortune cookie. Flattering, a little loose, funny when it misses. It describes how you write and think in general, so it is safe and fun to share with friends, with the job search left completely out of it. Tap through a few types.</p>
+
+  <div class="cmp">Tap a type</div>
+  <div class="swap">
+    <button class="swapBtn on" data-i="0">The Closer</button>
+    <button class="swapBtn" data-i="1">The Storyteller</button>
+    <button class="swapBtn" data-i="2">The Straight Shooter</button>
+    <button class="swapBtn" data-i="3">The Overthinker</button>
+    <button class="swapBtn" data-i="4">The Warm One</button>
+  </div>
+
+  <div class="row">
+    <div class="card" id="card">
+      <div class="cardTop">
+        <div class="brandMark"><div class="bDot"></div><div class="bName">Aplyer</div></div>
+        <div class="cardLabel">Voice Card</div>
+      </div>
+      <div class="flair" id="flair">A rare breed</div>
+      <div class="arch">
+        <div class="archKick">Your writing type</div>
+        <div class="archName" id="archName">The <span class="g">Closer</span></div>
+        <div class="archTag" id="archTag">You write like you are late for something, and honestly it works.</div>
+      </div>
+      <div class="reads" id="reads"></div>
+      <div class="cardCta">
+        <div class="go">What's your type?</div>
+        <div class="wd">Powered by<br>WriteDNA Technology</div>
+      </div>
+    </div>
+
+    <div class="side">
+      <h2>Why this one travels and the recruiter version did not</h2>
+      <p>Nothing on this card mentions jobs, applications, or resumes. It is about how the person writes and thinks, full stop. That is what makes it safe to post for someone keeping their search quiet, and it is what earns the caption you described: this thing is scary accurate, or, this is so not me, and either reaction gets a share.</p>
+      <div class="why">
+        <b>The fortune-cookie principle:</b> the lines are flattering, a little general, and open enough that the reader fills in the meaning. When one lands, it feels personal. When one misses, they laugh and share it anyway. Nobody expects an AI to know them perfectly, so the looseness is part of the fun, not a flaw.
+      </div>
+      <p style="margin-top:14px">The one honesty line to hold: playful and general is fine, a fabricated statistic is not. Say rare breed as obvious flavor, never top 3 percent as a fake measurement. WriteDNA picks the type from the real fingerprint, then says it in warm, loose language.</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="wd">Powered by WriteDNA Technology</div>
+    <div class="sl">Stop Skipping Jobs</div>
+    <div style="width:100%;font-size:13px;margin-top:8px;"><a href="https://aplyer.ai/privacy.html" style="color:#5b6675;text-decoration:none;margin-right:16px;">Privacy Policy</a><a href="https://aplyer.ai/terms.html" style="color:#5b6675;text-decoration:none;">Terms of Service</a></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var types = [
+    { name:["The ","Closer"], flair:"A rare breed",
+      tag:"You write like you are late for something, and honestly it works.",
+      reads:["You have never met a sentence you couldn't make shorter.",
+             "Your texts end three words before everyone else's, and nobody minds.",
+             "Somewhere, a group chat is waiting on your one-word reply."] },
+    { name:["The ","Storyteller"], flair:"1 of the fun ones",
+      tag:"You could make a grocery list sound like a season finale.",
+      reads:["You have never sent a short text in your life and you are not sorry.",
+             "People reread your messages just to enjoy them twice.",
+             "You start at the beginning. The real beginning. Year one."] },
+    { name:["The ","Straight Shooter"], flair:"Refreshingly honest",
+      tag:"You say the thing. While everyone else is still warming up, you already said it.",
+      reads:["Fluff makes you itch. You deleted three words just reading this.",
+             "People know exactly where they stand with you, which is rare.",
+             "Your idea of a long message is two sentences."] },
+    { name:["The ","Overthinker"], flair:"Chronically thoughtful",
+      tag:"You have rewritten this sentence four times in your head already.",
+      reads:["You once edited a text after you sent it. Twice.",
+             "Every message gets a final read, then one more, then send.",
+             "You have strong feelings about the right comma."] },
+    { name:["The ","Warm One"], flair:"Everyone's favorite",
+      tag:"You write like a hug that also gets the point across.",
+      reads:["Your emails make people feel good and still say the thing.",
+             "You have used an exclamation point and meant it. Many times.",
+             "People screenshot your nice messages and keep them."] }
+  ];
+  var archName=document.getElementById('archName');
+  var archTag=document.getElementById('archTag');
+  var flair=document.getElementById('flair');
+  var reads=document.getElementById('reads');
+  function paint(i){
+    var t=types[i];
+    archName.innerHTML=t.name[0]+'<span class="g">'+t.name[1]+'</span>';
+    archTag.textContent=t.tag;
+    flair.textContent=t.flair;
+    reads.innerHTML=t.reads.map(function(r){
+      return '<div class="read"><span class="dot">&#8226;</span><span>'+r+'</span></div>';
+    }).join('');
+  }
+  document.querySelectorAll('.swapBtn').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.swapBtn').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      paint(parseInt(b.getAttribute('data-i'),10));
+    });
+  });
+  paint(0);
+})();
+</script>
+</body>
+</html>
