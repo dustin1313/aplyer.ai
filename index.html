@@ -2,6 +2,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- ============ GOOGLE ANALYTICS 4 ============
+     REPLACE G-XXXXXXXXXX BELOW with your Measurement ID.
+     Find it in Google Analytics: Admin > Data Streams >
+     click your web stream. It looks like G-ABCD123456.
+     Paste this SAME block into the <head> of every other
+     page: index.html, join, layoffs, resume-audit,
+     resume-score, privacy.html, terms.html,
+     scam-field-guide.html, voice-card-fun.html.
+     ============================================ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aplyer.ai, Live Demo</title>
@@ -858,6 +875,7 @@
   }
 
   async function generate() {
+    if (typeof gtag === 'function') { gtag('event', 'demo_generate_started'); }
     hideError();
 
     const resume = document.getElementById('resumeText').value.trim();
