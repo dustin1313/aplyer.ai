@@ -2,6 +2,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- ============ GOOGLE ANALYTICS 4 ============
+     REPLACE G-56ZD8JXP06 BELOW with your Measurement ID.
+     Find it in Google Analytics: Admin > Data Streams >
+     click your web stream. It looks like G-ABCD123456.
+     Paste this SAME block into the <head> of every other
+     page: index.html, join, layoffs, resume-audit,
+     resume-score, privacy.html, terms.html,
+     scam-field-guide.html, voice-card-fun.html.
+     ============================================ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-56ZD8JXP06"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-56ZD8JXP06');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aplyer.ai, Live Demo</title>
@@ -625,13 +642,7 @@
   </div>
 </div>
 
-<div style="max-width:700px;margin:0 auto;padding:0 24px 8px;">
-  <div class="setup-bar" id="setupBar" style="display:none;">
-    <div class="setup-dot"></div>
-    <input type="password" id="apiKeyInput" placeholder="Enter your Anthropic API key to run this demo" autocomplete="off"/>
-    <button onclick="setApiKey()">Connect</button>
-  </div>
-</div>
+<!-- Development API key bar removed September 17, 2026. It was hidden but present in the shipped page. -->
 
 <div class="demo-wrap">
 
@@ -674,7 +685,7 @@
   <div class="panel" style="grid-column: 1 / -1;">
     <div class="panel-head">
       <div class="panel-num">3</div>
-      <div class="panel-title">Essay Question</div>
+      <div class="panel-title">Application Question</div>
       <div class="panel-sub">pick one or write your own</div>
     </div>
     <div class="panel-body">
@@ -710,6 +721,26 @@
 
   <!-- GENERATE -->
   <div class="gen-wrap">
+  <!-- ================= STEP 4: WRITING SAMPLE =================
+       TO TURN THIS ON: change display:none to display:block on the
+       line immediately below, once Ali confirms /api/demo reads the
+       writingSample field. Until then it stays hidden, because the
+       helper text promises voice matching that will not happen yet.
+       ========================================================== -->
+  <div class="panel" id="step4Panel" style="display:none;">
+    <div class="panel-head">
+      <div class="panel-num">4</div>
+      <div class="panel-title">Something You've Written</div>
+      <div class="panel-sub">paste a cover letter or a few sentences from anything</div>
+    </div>
+    <div class="panel-body">
+      <textarea id="writingSample" placeholder="Paste a cover letter, an email you sent, a post, anything you actually wrote." rows="8"></textarea>
+      <div style="font-family:'Lato',sans-serif;font-size:13px;color:#555555;line-height:1.5;margin-top:10px;">
+        This is how Aplyer learns your voice. Skip it and you still get an answer, it just will not sound like you.
+      </div>
+    </div>
+  </div>
+
     <button class="gen-btn" id="genBtn" onclick="generate()">
       <div class="spinner"></div>
       <span class="btn-text">Generate My Answer →</span>
@@ -739,7 +770,7 @@
       </div>
       <div class="output-body">
         <div class="output-q">
-          <strong>Essay Question</strong>
+          <strong>Application Question</strong>
           <span id="outputQ"></span>
         </div>
         <div class="output-text" id="outputText"></div>
@@ -844,11 +875,14 @@
   }
 
   async function generate() {
+    if (typeof gtag === 'function') { gtag('event', 'demo_generate_started'); }
     hideError();
 
     const resume = document.getElementById('resumeText').value.trim();
     const jobDesc = document.getElementById('jobDesc').value.trim();
     const question = getQuestion();
+    const wsEl = document.getElementById('writingSample');
+    const writingSample = wsEl ? wsEl.value.trim() : '';
 
     if (!resume) { showError('Please paste your resume or upload a .txt file.'); return; }
     if (!jobDesc) { showError('Please paste the job description.'); return; }
@@ -865,7 +899,7 @@
       const response = await fetch('https://aplyer-api.vercel.app/api/demo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ resume: resume, jobDescription: jobDesc, question: question })
+        body: JSON.stringify({ resume: resume, jobDescription: jobDesc, question: question, writingSample: writingSample })
       });
 
       let data = {};
