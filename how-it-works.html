@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Analytics 4, added September 21, 2026 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-56ZD8JXP06"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-56ZD8JXP06');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Upload your resume once. Aplyer activates automatically on Workday, Greenhouse, and Lever, answers the application questions in your voice, and fills the standard fields. You review everything before you submit.">
+<meta property="og:title" content="How Aplyer Works. Setup, Detect, Apply.">
+<meta property="og:description" content="Upload your resume once. Aplyer activates automatically on Workday, Greenhouse, and Lever, answers the application questions in your voice, and fills the standard fields. You review everything before you submit.">
+<meta property="og:image" content="https://www.aplyer.ai/aplyer_og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.aplyer.ai/how-it-works.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.aplyer.ai/aplyer_og.jpg">
+<title>How Aplyer Works. Setup, Detect, Apply.</title>
+<link rel="icon" type="image/png" sizes="32x32" href="icon%2032.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icon%2016.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon%20180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FFFFFF;
+  --paper:#F5F7FA;
+  --field:#ECEEF2;
+  --field2:#F0F2F6;
+  --green:#1DB954;
+  --green2:#22C55E;
+  --green-dim:rgba(29,185,84,0.10);
+  --green-border:rgba(29,185,84,0.25);
+  --red:#E5373A;
+  --red-dim:rgba(229,55,58,0.08);
+  --red-border:rgba(229,55,58,0.25);
+  --white:#111111;
+  --white2:#222222;
+  --sub:#222222;
+  --muted:#333333;
+  --dim:#555555;
+  --border:rgba(0,0,0,0.08);
+  --border2:rgba(0,0,0,0.10);
+  --r:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;color:#111111;background:#FFFFFF;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.10)}
+.nav-inner{max-width:1080px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-name{font-family:'Lato',sans-serif;font-size:26px;font-weight:700;color:var(--green);letter-spacing:-.01em}
+.logo-tag{font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);font-family:'Lato',sans-serif}
+.logo-texts{display:flex;flex-direction:column;gap:1px}
+.nav-btn{background:var(--green);color:#000;padding:15px 36px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Lato',sans-serif;letter-spacing:.02em;transition:all .15s}
+.nav-btn:hover{background:var(--green2)}
+
+.cover{padding:104px 24px 24px;background:var(--bg)}
+.cover-inner{max-width:1100px;margin:0 auto}
+
+.form-header{background:var(--paper);border:1px solid var(--border2);border-radius:12px;padding:36px 40px;margin-bottom:0;position:relative;overflow:hidden}
+.form-header::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--green))}
+.app-type{font-family:'DM Mono',monospace;font-size:14px;color:var(--green);letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.form-title{font-family:'Lato',sans-serif;font-size:clamp(28px,4.5vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.05;color:#111111}
+.form-title .red{color:var(--red)}
+.form-title .grn{color:var(--green)}
+.form-ref{font-family:'DM Mono',monospace;font-size:14px;color:#222222;margin-top:10px}
+
+.applicant-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-top:20px;border-top:1px solid var(--border);margin-top:24px;align-items:start}
+.field-mini label{color:#555555;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#222222;font-family:'Lato',sans-serif;font-weight:700;display:block;margin-bottom:6px}
+.field-mini .val{font-size:15px;color:#111111;font-weight:400;font-family:'Lato',sans-serif}
+.field-mini .val.green{color:var(--green);font-weight:600}
+
+.q-section{padding:0 24px;max-width:1100px;margin:0 auto}
+.q-block{background:var(--paper);border:1px solid var(--border);border-radius:12px;margin-top:16px;overflow:hidden;transition:border-color .2s}
+.q-block:hover{border-color:var(--border2)}
+.q-label{padding:20px 32px 0;display:flex;align-items:flex-start;gap:14px}
+.q-num{font-family:'DM Mono',monospace;font-weight:500;font-size:17px;color:var(--green);letter-spacing:.1em;flex-shrink:0;margin-top:4px}
+.q-text{font-family:'Lato',sans-serif;font-size:clamp(24px,3vw,32px);font-weight:700;color:#111111;line-height:1.3;letter-spacing:-.01em}
+.q-text .red{color:var(--red)}
+.q-text .grn{color:var(--green)}
+
+.q-answer{margin:16px 32px 0;background:var(--field);border:1px solid var(--border2);border-radius:8px;padding:24px;position:relative;min-height:80px}
+.q-answer::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--green);border-radius:3px 0 0 3px;opacity:.6}
+
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.cur{display:inline-block;width:2px;height:1em;background:var(--green);vertical-align:text-bottom;margin-left:2px;animation:blink 1.1s infinite}
+
+/* ANSWER TEXT - NOW CLEARLY VISIBLE */
+.ans-body{font-size:clamp(15px,1.8vw,17px);color:#222222;line-height:1.85;font-weight:400}
+.ans-body strong{color:#111111;font-weight:700}
+.ans-body .highlight{color:var(--green);font-weight:600}
+.ans-body .problem{color:var(--red);font-weight:600}
+
+/* STATS - ALL TEXT CLEARLY VISIBLE */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:20px 0;background:var(--border2);border-radius:8px;overflow:hidden}
+.stat-box{background:var(--field2);padding:20px 16px}
+.stat-n{font-family:'DM Mono',monospace;font-size:34px;color:var(--green);line-height:1;margin-bottom:6px}
+.stat-l{font-size:14px;color:#222222;line-height:1.55;margin-bottom:10px;font-weight:400}
+/* SOURCE LINKS - NOW CLEARLY VISIBLE */
+.stat-s{font-size:13px;font-family:'DM Mono',monospace;color:#222222}
+.stat-s a{color:#222222;text-decoration:none;border-bottom:1px solid var(--muted);padding-bottom:1px;transition:color .15s,border-color .15s}
+.stat-s a:hover{color:var(--green);border-color:var(--green)}
+
+/* BEFORE/AFTER */
+.ba-mini{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch;margin:24px 0}
+.ba-screen{border-radius:6px;overflow:hidden;border:1px solid}
+.ba-s-bad{border-color:#E5373A;background:rgba(229,55,58,0.22)}
+.ba-s-good{border-color:#1DB954;background:rgba(29,185,84,0.22)}
+.ba-sbar{padding:10px 14px;display:flex;align-items:center;gap:6px}
+.ba-sbar-bad{background:rgba(229,55,58,0.1)}
+.ba-sbar-good{background:rgba(29,185,84,0.08)}
+.ba-dot{width:8px;height:8px;border-radius:50%}
+.ba-body{padding:16px 18px;min-height:130px;display:flex;flex-direction:column;justify-content:space-between}
+.ba-q{font-size:16px;font-family:'Lato',sans-serif;color:#000000;margin-bottom:10px;letter-spacing:.01em;font-weight:700}
+.ba-box{border-radius:5px;padding:14px;min-height:60px}
+.ba-box-bad{background:rgba(229,55,58,0.18);border:2px dashed #E5373A}
+.ba-box-good{background:rgba(29,185,84,0.18);border:2px solid #1DB954}
+.ba-ph{color:#333333;font-size:13px;font-style:italic}
+.ba-ans{font-size:15px;color:#000000;line-height:1.6}
+.ba-stat{margin-top:10px;padding:8px 12px;border-radius:4px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;text-align:center;font-family:'Lato',sans-serif}
+.ba-stat-bad{background:rgba(229,55,58,0.25);color:#000000}
+.ba-stat-good{background:rgba(29,185,84,0.25);color:#000000}
+.ba-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0}
+.ba-lbl{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--green);font-family:'DM Mono',monospace}
+
+/* STEPS */
+.steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:16px 0;background:var(--border2);border-radius:8px;overflow:hidden}
+.step-box{background:var(--field2);padding:20px 16px}
+.step-n{font-family:'Lato',sans-serif;font-size:22px;font-weight:900;color:var(--green);letter-spacing:.02em;margin-bottom:10px}
+.step-t{font-size:17px;font-weight:700;color:#111111;margin-bottom:6px}
+.step-b{font-size:16px;color:#222222;line-height:1.7;font-weight:400}
+
+/* CONFIDENCE BADGES */
+.confidence-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.conf-inner{display:flex;gap:8px;align-items:center;width:100%;flex-wrap:wrap}
+.conf-badge{display:flex;align-items:center;gap:5px;background:var(--field2);border:1px solid var(--green-border);border-radius:20px;padding:5px 12px;flex:1;justify-content:center;min-width:120px}
+.conf-red{border-color:rgba(229,55,58,.35);min-width:180px}
+.conf-yellow{border-color:rgba(234,179,8,.35)}
+.conf-green{border-color:rgba(29,185,84,.35)}
+.conf-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--green)}
+.conf-badge span{font-size:13px;font-family:'DM Mono',monospace;color:var(--green)}
+
+/* TRACKER */
+.tracker-mini{background:var(--field2);border:1px solid var(--border2);border-radius:8px;overflow:hidden;margin:16px 0}
+.t-head{background:var(--field);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,0,0,0.10)}
+.t-title{font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:#F0F0F0;letter-spacing:.02em}
+.t-badges{display:flex;gap:6px}
+.tbadge{font-size:13px;font-weight:700;padding:4px 12px;border-radius:20px;font-family:'Lato',sans-serif}
+.tbadge-g{background:var(--green-dim);color:var(--green)}
+.tbadge-r{background:var(--red-dim);color:var(--red)}
+.t-row{display:flex;align-items:center;gap:10px;padding:9px 16px;border-bottom:1px solid rgba(0,0,0,0.10);transition:background .15s}
+.t-row:hover{background:var(--field)}
+.t-row:last-child{border-bottom:none}
+.t-ico{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;font-family:'Lato',sans-serif}
+.t-ico-g{background:var(--green-dim);color:var(--green)}
+.t-ico-r{background:var(--red-dim);color:var(--red)}
+.t-name{font-size:14px;font-weight:700;color:#111111;flex:1}
+.t-role{font-size:13px;color:#222222}
+.t-date{font-size:13px;color:#222222;font-family:'DM Mono',monospace;flex-shrink:0}
+
+.q-block-foot{padding:20px 32px}
+
+/* SUBMIT */
+.submit-section{max-width:1100px;margin:0 auto;padding:0 24px 0}
+.submit-block{background:var(--paper);border:1px solid var(--border2);border-radius:12px;margin-top:16px;overflow:hidden;position:relative}
+.submit-block::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)}
+.submit-inner{padding:36px 40px}
+.submit-label{font-family:'DM Mono',monospace;font-size:13px;color:var(--green);letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.submit-h{font-size:clamp(22px,3.5vw,36px);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:10px;color:#111111}
+.submit-h .grn{color:var(--green)}
+.submit-sub{font-size:16px;color:#222222;line-height:1.75;font-weight:400;margin-bottom:28px;max-width:480px}
+.submit-form{display:flex;max-width:420px;background:var(--bg);border:2px solid rgba(0,0,0,0.15);border-radius:8px;overflow:hidden;transition:border-color .2s}
+.submit-form:focus-within{border-color:var(--green)}
+.submit-form input{flex:1;padding:13px 16px;font-size:15px;font-family:'Lato',sans-serif;background:transparent;border:none;outline:none;color:#111111}
+.submit-form input::placeholder{color:rgba(0,0,0,0.40)}
+.submit-form button{padding:13px 22px;background:var(--green);color:#000;border:none;font-family:'Lato',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;letter-spacing:.02em}
+.submit-form button:hover{background:var(--green2)}
+.submit-ok{display:none;margin-top:16px;font-size:16px;color:var(--green);font-weight:700;font-family:'DM Mono',monospace}
+.submit-note{font-size:13px;color:#111111;margin-top:10px;font-family:'Lato',sans-serif;font-weight:700}
+
+footer{border-top:1px solid var(--border);padding:20px 24px}
+.foot-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-p{font-size:13px;color:#333333;font-family:'Lato',sans-serif;font-weight:400}
+.foot-links{display:flex;gap:16px}
+.foot-links a{font-size:13px;color:#333333;text-decoration:none;font-family:'Lato',sans-serif;font-weight:400;transition:color .15s}
+.foot-links a:hover{color:#222222}
+
+
+/* ── FOUNDER SECTION ── */
+.founder-section{padding:0 24px;max-width:1100px;margin:0 auto}
+.founder-block{background:var(--paper);border:1px solid var(--border2);border-radius:12px;margin-top:16px;overflow:hidden}
+.founder-inner{padding:28px 32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.founder-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center top;border:2.5px solid var(--green);flex-shrink:0}
+.founder-label{font-family:'Lato',sans-serif;font-size:16px;font-weight:400;color:var(--green);margin-bottom:6px}
+.founder-name{font-size:17px;font-weight:700;color:#111111;margin-bottom:2px}
+.founder-title{font-size:16px;font-family:'Lato',sans-serif;font-weight:400;color:#222222;margin-bottom:12px}
+.founder-story{font-size:16px;color:#222222;line-height:1.8;font-weight:400}
+.founder-story strong{color:#111111;font-weight:700}
+.founder-story em{color:var(--green);font-style:normal;font-weight:600}
+@media(max-width:600px){.founder-inner{grid-template-columns:1fr}.founder-photo{width:72px;height:72px}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.f1{opacity:0;animation:fadeUp .5s ease .05s forwards}
+.f2{opacity:0;animation:fadeUp .5s ease .2s forwards}
+.f3{opacity:0;animation:fadeUp .5s ease .35s forwards}
+.f4{opacity:0;animation:fadeUp .5s ease .5s forwards}
+.f5{opacity:0;animation:fadeUp .5s ease .65s forwards}
+
+.specs-row{display:grid;grid-template-columns:1fr 2fr 1fr 1fr;gap:12px;align-items:start;text-align:center}
+.gap-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+
+@media(max-width:700px){
+  .form-header{padding:28px 22px}
+  .applicant-row{grid-template-columns:1fr 1fr}
+  .specs-row{grid-template-columns:1fr 1fr}
+  .gap-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .steps-row{grid-template-columns:1fr}
+  .ba-mini{grid-template-columns:1fr;gap:8px}.ba-arrow{flex-direction:row;justify-content:center}
+  .submit-inner{padding:28px 24px}
+  .submit-form{flex-direction:column}.submit-form button{border-top:1px solid var(--border);border-radius:0 0 6px 6px;padding:14px;font-size:15px}
+  .cover{padding:90px 16px 0}
+  .q-label{padding:18px 20px 0}
+  .q-answer{margin:14px 20px 0;padding:18px}
+  .q-block-foot{padding:16px 20px}
+}
+
+@media(max-width:480px){
+  .logo-tag{display:none}
+  .nav-btn{padding:11px 14px;font-size:13px;letter-spacing:0;white-space:nowrap}
+  .logo-name{font-size:22px}
+  .applicant-row{grid-template-columns:1fr}
+  .specs-row{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .q-section{padding:0 12px}
+  .q-label{padding:16px 16px 0}
+  .q-answer{margin:12px 16px 0;padding:16px}
+  .q-block-foot{padding:12px 16px}
+  .form-header{padding:24px 18px}
+  .submit-inner{padding:24px 18px}
+  .submit-form{max-width:100%}
+  .submit-form input{font-size:16px}
+  .submit-h{font-size:clamp(20px,6vw,28px)}
+  .cover{padding:80px 12px 0}
+  .ba-mini{gap:6px}
+  .step-box{padding:16px 14px}
+  .stat-box{padding:16px 12px}
+  .stat-n{font-size:28px}
+  .q-text{font-size:clamp(20px,5.5vw,28px)}
+  .form-title{font-size:clamp(26px,7vw,42px)}
+  .founder-inner{padding:20px 18px;gap:16px}
+  .t-head{flex-wrap:wrap;gap:6px}
+  .t-badges{flex-wrap:wrap}
+  .t-name{font-size:13px}
+  .t-role{font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .t-date{font-size:13px}
+  .conf-inner{flex-direction:column}
+  .conf-badge{flex:none;width:100%;justify-content:flex-start;min-width:unset;padding:8px 14px}
+}
+
+/* ========== MULTI-PAGE NAV, ADDED OCTOBER 5 2026 ========== */
+.nav-right{display:flex;align-items:center;gap:28px}
+.nav-links{list-style:none;display:flex;align-items:center;gap:24px;margin:0;padding:0}
+.nav-links a{font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:#0D1829;text-decoration:none;padding:6px 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.nav-links a:hover{color:var(--green);border-bottom-color:rgba(29,185,84,0.45)}
+.nav-links a.active{color:var(--green);border-bottom-color:var(--green)}
+.nav-links a:focus-visible,.nav-btn:focus-visible,.hero-btn:focus-visible,.foot-links a:focus-visible{outline:3px solid #0D1829;outline-offset:3px}
+a.nav-btn{display:inline-block;text-decoration:none;text-align:center}
+.nav-toggle{display:none;background:none;border:2px solid rgba(0,0,0,0.15);border-radius:8px;color:#0D1829;font-family:'Lato',sans-serif;font-size:14px;font-weight:700;padding:9px 14px;cursor:pointer}
+
+@media(max-width:900px){
+  .nav-inner{flex-wrap:wrap;height:auto;padding-top:12px;padding-bottom:12px}
+  .nav-toggle{display:block;margin-left:auto}
+  .nav-right{display:none;width:100%;flex-direction:column;align-items:stretch;gap:14px;padding-top:14px}
+  .nav-right.open{display:flex}
+  .nav-links{flex-direction:column;align-items:stretch;gap:0}
+  .nav-links a{display:block;padding:12px 2px;border-bottom:1px solid rgba(0,0,0,0.08)}
+  .nav-links a.active{border-bottom-color:var(--green)}
+  a.nav-btn{width:100%}
+}
+
+/* ========== HERO CTA BUTTONS ========== */
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.hero-btn{font-family:'Lato',sans-serif;font-size:16px;font-weight:700;text-decoration:none;border-radius:8px;padding:15px 34px;letter-spacing:.02em;display:inline-block;transition:background .15s,border-color .15s,color .15s}
+.hero-btn-primary{color:#000;background:var(--green);border:2px solid var(--green)}
+.hero-btn-primary:hover{background:var(--green2);border-color:var(--green2)}
+.hero-btn-secondary{color:#0D1829;background:#FFFFFF;border:2px solid rgba(13,24,41,0.25)}
+.hero-btn-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ========== FOOTER, GREEN LEFT RED RIGHT ========== */
+footer{border-top:1px solid var(--border);padding:24px;margin-top:56px}
+.foot-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-powered{font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:var(--green)}
+.foot-slogan{font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:var(--red)}
+.foot-links{display:flex;gap:20px}
+.foot-links a{font-size:14px;color:#333333;text-decoration:none;font-family:'Lato',sans-serif;font-weight:400;border-bottom:1px solid rgba(0,0,0,0.18);padding-bottom:1px;transition:color .15s,border-color .15s}
+.foot-links a:hover{color:var(--green);border-color:var(--green)}
+@media(max-width:700px){
+  .foot-inner{flex-direction:column;align-items:flex-start;gap:12px}
+}
+
+/* ========== PRICING PAGE ========== */
+.page-head{max-width:1100px;margin:0 auto;padding:104px 24px 0}
+.page-head-card{background:var(--paper);border:1px solid var(--border2);border-radius:12px;padding:40px;position:relative;overflow:hidden;text-align:center}
+.page-head-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--green))}
+.page-h1{font-family:'Lato',sans-serif;font-size:clamp(30px,4.5vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.08;color:#111111}
+.page-sub{max-width:620px;margin:16px auto 0;font-family:'Lato',sans-serif;font-size:18px;font-weight:400;color:#222222;line-height:1.65}
+.page-note{margin-top:14px;font-family:'Lato',sans-serif;font-size:16px;font-weight:700;color:#555555}
+
+.tier-wrap{max-width:1100px;margin:0 auto;padding:16px 24px 0;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+.tier{background:var(--paper);border:1px solid var(--border2);border-radius:12px;padding:32px 30px 30px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.tier-paid{border:2px solid var(--green);background:#FFFFFF}
+.tier-flag{position:absolute;top:0;right:0;background:var(--green);color:#000;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;padding:7px 16px;border-radius:0 10px 0 10px}
+.tier-name{font-family:'Lato',sans-serif;font-size:22px;font-weight:700;color:#0D1829;margin-bottom:6px}
+.tier-price{font-family:'Lato',sans-serif;font-size:46px;font-weight:900;color:#111111;line-height:1;letter-spacing:-.02em}
+.tier-price .per{font-size:17px;font-weight:700;color:#333333;letter-spacing:0}
+.tier-line{font-family:'Lato',sans-serif;font-size:16px;color:#222222;line-height:1.65;margin:14px 0 20px;min-height:52px}
+.tier-rule{border:0;border-top:1px solid var(--border2);margin:0 0 18px}
+.tier-list{list-style:none;margin:0 0 26px;padding:0;flex:1}
+.tier-list li{display:flex;gap:11px;align-items:flex-start;font-family:'Lato',sans-serif;font-size:16px;color:#222222;line-height:1.6;padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.05)}
+.tier-list li:last-child{border-bottom:none}
+.tier-list .mk{flex-shrink:0;font-weight:700;font-size:16px;line-height:1.6;width:16px;text-align:center}
+.tier-list .yes{color:var(--green)}
+.tier-list .no{color:var(--red)}
+.tier-list li.off{color:#555555}
+.tier-cta{display:block;text-align:center;text-decoration:none;font-family:'Lato',sans-serif;font-size:16px;font-weight:700;border-radius:8px;padding:15px 20px;letter-spacing:.02em;transition:background .15s,border-color .15s,color .15s}
+.cta-solid{background:var(--green);color:#000;border:2px solid var(--green)}
+.cta-solid:hover{background:var(--green2);border-color:var(--green2)}
+.cta-outline{background:#FFFFFF;color:#0D1829;border:2px solid rgba(13,24,41,0.25)}
+.cta-outline:hover{border-color:var(--green);color:var(--green)}
+.tier-foot{margin-top:12px;font-family:'Lato',sans-serif;font-size:14px;color:#444444;text-align:center;line-height:1.6}
+
+.founding{max-width:1100px;margin:0 auto;padding:20px 24px 0}
+.founding-card{background:var(--paper);border:1px solid var(--border2);border-left:4px solid var(--red);border-radius:0 12px 12px 0;padding:28px 32px}
+.founding-h{font-family:'Lato',sans-serif;font-size:21px;font-weight:700;color:#0D1829;margin-bottom:10px}
+.founding-p{font-family:'Lato',sans-serif;font-size:16px;color:#222222;line-height:1.75;max-width:760px}
+
+.price-faq{max-width:1100px;margin:0 auto;padding:20px 24px 0}
+.price-faq-card{background:#FFFFFF;border:1px solid var(--border2);border-radius:12px;padding:28px 32px}
+.price-faq-h{font-family:'Lato',sans-serif;font-size:21px;font-weight:700;color:#0D1829;margin-bottom:6px}
+.price-faq dt{font-family:'Lato',sans-serif;font-size:16px;font-weight:700;color:#111111;margin-top:18px}
+.price-faq dd{font-family:'Lato',sans-serif;font-size:16px;color:#333333;line-height:1.7;margin:6px 0 0}
+
+@media(max-width:820px){
+  .tier-wrap{grid-template-columns:1fr}
+  .tier-line{min-height:0}
+  .page-head{padding-top:92px}
+  .page-head-card{padding:28px 22px}
+  .tier{padding:26px 22px}
+  .founding-card,.price-faq-card{padding:22px 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  html{scroll-behavior:auto}
+  .f1,.f2,.f3,.f4,.f5{opacity:1 !important}
+}
+
+/* ========== ODDS BAND ========== */
+.odds{max-width:1100px;margin:0 auto;padding:16px 24px 0}
+.odds-card{background:var(--paper);border:1px solid var(--border2);border-radius:12px;padding:44px 40px;text-align:center;position:relative;overflow:hidden}
+.odds-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--green))}
+.odds-h{font-family:'Lato',sans-serif;font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:#111111}
+.odds-h .grn{color:var(--green)}
+.odds-p{max-width:680px;margin:14px auto 0;font-family:'Lato',sans-serif;font-size:17px;font-weight:400;color:#333333;line-height:1.7}
+@media(max-width:700px){.odds-card{padding:26px 22px}}
+.odds-split{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:740px;margin:28px auto 0}
+.odds-col{background:#FFFFFF;border:1px solid var(--border2);border-radius:10px;padding:20px 18px}
+.odds-k{font-family:'Lato',sans-serif;font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.odds-k-red{color:var(--red)}
+.odds-k-grn{color:var(--green)}
+.odds-v{font-family:'Lato',sans-serif;font-size:15px;color:#333333;line-height:1.6}
+@media(max-width:620px){.odds-split{grid-template-columns:1fr}}
+
+/* ========== REUSABLE CURRENCY SYMBOL ==========
+   Lato draws its dollar sign on a slant and it worsens with weight.
+   DM Mono draws it upright. Ratios match the measured cap height of Lato digits. */
+.dsign{font-family:'DM Mono',monospace;font-weight:500;font-style:normal;font-size:.48em;line-height:1;vertical-align:.345em;letter-spacing:0;margin-right:.05em}
+
+/* ========== APLYER VS CHATGPT ========== */
+.sbs{max-width:1100px;margin:0 auto;padding:16px 24px 0}
+.sbs-card{background:var(--paper);border:1px solid var(--border2);border-radius:12px;padding:38px 40px 34px;position:relative;overflow:hidden}
+.sbs-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--red))}
+.sbs-head{text-align:center;margin-bottom:26px}
+.sbs-h{font-family:'Lato',sans-serif;font-size:clamp(24px,3.6vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.15;color:#111111}
+.sbs-sub{margin-top:8px;font-family:'Lato',sans-serif;font-size:18px;font-weight:700;color:var(--green)}
+.sbs-red{color:var(--red)}
+.sbs-q{background:#FFFFFF;border:1px solid var(--border2);border-left:3px solid #0D1829;border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:18px}
+.sbs-q-tag{display:block;font-family:'DM Mono',monospace;font-size:13px;color:#666666;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}
+.sbs-q-text{font-family:'Lato',sans-serif;font-size:18px;font-weight:700;color:#111111;line-height:1.45}
+.sbs-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+.sbs-col{background:#FFFFFF;border:1px solid var(--border2);border-radius:10px;padding:20px 20px 18px;display:flex;flex-direction:column}
+.sbs-col-aplyer{border:2px solid var(--green)}
+.sbs-col-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--border2)}
+.sbs-name{font-family:'Lato',sans-serif;font-size:19px;font-weight:700;color:#555555}
+.sbs-name-grn{color:var(--green)}
+.sbs-meta{font-family:'DM Mono',monospace;font-size:13px;color:#777777}
+.sbs-body{font-family:'Lato',sans-serif;font-size:16px;color:#222222;line-height:1.75;flex:1;min-height:200px}
+.sbs-col-gpt .sbs-body{color:#5A5A5A}
+.sbs-note{margin-top:14px;padding-top:12px;border-top:1px solid var(--border2);font-family:'Lato',sans-serif;font-size:14px;font-weight:700;line-height:1.5}
+.sbs-note-grn{color:var(--green)}
+.sbs-note-red{color:var(--red)}
+@media(max-width:820px){
+  .sbs-grid{grid-template-columns:1fr}
+  .sbs-card{padding:26px 20px 24px}
+  .sbs-body{min-height:0}
+}
+.sbs-verdict{margin-top:20px;background:#FFFFFF;border:1px solid var(--border2);border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:20px 24px}
+.sbs-verdict-mark{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.sbs-verdict-text{font-family:'Lato',sans-serif;font-size:18px;font-weight:700;color:#111111;line-height:1.6;margin:0;max-width:840px}
+@media(max-width:820px){.sbs-verdict{padding:18px 18px}.sbs-verdict-text{font-size:17px}}
+
+/* ========== STATISTICS, now the lead-in of the Q block ========== */
+.statband{max-width:1100px;margin:0 auto;padding:16px 24px 0}
+.statband-inner{background:#FFFFFF;border:1px solid var(--border2);border-top:3px solid var(--red);border-radius:0 0 12px 12px;padding:26px 32px;text-align:center}
+.statband-line{font-family:'Lato',sans-serif;font-size:17px;font-weight:400;color:#333333;line-height:1.7;margin:0 auto;max-width:760px}
+.statband-link{color:#0D1829;font-weight:700;text-decoration:none;border-bottom:2px solid #3B82F6;padding-bottom:1px}
+.statband-kicker{margin:14px auto 0;font-family:'Lato',sans-serif;font-size:19px;font-weight:900;color:#111111;letter-spacing:-.01em;max-width:760px}
+@media(max-width:700px){.statband-inner{padding:22px 20px}}
+.qlead{background:#FFFFFF;border:1px solid var(--border2);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:20px}
+.qlead-line{font-family:'Lato',sans-serif;font-size:16px;color:#333333;line-height:1.7;margin:0}
+.qlead-kick{font-family:'Lato',sans-serif;font-size:18px;font-weight:900;color:#111111;letter-spacing:-.01em;margin:10px 0 0}
+.qlead-line a,.statband-link{color:#0D1829;font-weight:700;text-decoration:none;border-bottom:2px solid #3B82F6;padding-bottom:1px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo-wrap" href="index.html">
+      <svg width="32" height="32" viewBox="0 0 88 88" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="navG" x1="0" y1="44" x2="88" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#E5373A"/>
+            <stop offset="45%" stop-color="#E5373A"/>
+            <stop offset="55%" stop-color="#1DB954"/>
+            <stop offset="100%" stop-color="#1DB954"/>
+          </linearGradient>
+        </defs>
+        <circle cx="44" cy="44" r="40" fill="#0D1829" stroke="url(#navG)" stroke-width="2"/>
+        <line x1="22" y1="28" x2="44" y2="44" stroke="#E5373A" stroke-width="5" stroke-linecap="round"/>
+        <line x1="22" y1="60" x2="44" y2="44" stroke="#E5373A" stroke-width="5" stroke-linecap="round"/>
+        <line x1="44" y1="44" x2="56" y2="56" stroke="#1DB954" stroke-width="5" stroke-linecap="round"/>
+        <line x1="56" y1="56" x2="72" y2="28" stroke="#1DB954" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="logo-texts">
+        <span class="logo-name">Aplyer.ai</span>
+        <span class="logo-tag">Stop Skipping Jobs</span>
+      </div>
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-right" onclick="toggleNav()">Menu</button>
+
+    <div class="nav-right" id="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="how-it-works.html" class="active">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+      <a class="nav-btn" href="index.html#waitlist-form">Join the Waitlist</a>
+    </div>
+  </div>
+</nav>
+<script>
+function toggleNav(){
+  var r=document.getElementById('nav-right');
+  var b=document.getElementById('nav-toggle');
+  var open=r.classList.toggle('open');
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.textContent = open ? 'Close' : 'Menu';
+}
+</script>
+
+
+<div class="page-head">
+  <div class="page-head-card">
+    <h1 class="page-h1">How Aplyer works.</h1>
+    <p class="page-sub">Install it once, upload your resume once, then let it work where the problem actually happens: on the application page, while you are still on it.</p>
+    <p class="page-note">Built by a recruiter who spent 8 years deciding who got the interview.</p>
+  </div>
+</div>
+
+<div class="q-section f4">
+  <div class="q-block">
+    <div class="q-label"><span class="q-num">Q.1</span><h2 class="q-text">Why are <span class="grn">Aplyer</span> and you different?</h2></div>
+    <div style="padding:0 32px">
+      <div class="q-answer">
+        <div style="text-align:center;padding:20px 0 8px;"><span style="font-family:'Lato',sans-serif;font-size:22px;font-weight:900;color:var(--green);letter-spacing:.01em;">We work inside job applications where you apply.</span></div>
+        <div style="text-align:center;padding:4px 0 16px;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;color:#222222;">WORKDAY · GREENHOUSE · LEVER · APPLY FROM LINKEDIN, INDEED, OR ANYWHERE · MORE BEING ADDED</div>
+        <div class="ans-body">Every other tool assumes you have already decided to apply. They help you fill a form faster, but they make you leave the page, open another app, paste in job descriptions, and bring the work to them. <span class="highlight">Aplyer activates where the problem actually happens.</span> You never leave the page. You never open another app. The moment you land on a careers page, Aplyer is already there.<br><br>And unlike every competitor, Aplyer answers application questions in <strong>your voice</strong>, not generic AI output that every recruiter recognizes instantly. Every time you edit an answer, Aplyer learns. Your voice profile gets sharper with every application. <span class="highlight">The 5th answer sounds more like you than the 1st.</span> No other tool does this inside the application itself.</div>
+        <div class="steps-row">
+          <div class="step-box"><div class="step-n">1 / SETUP</div><div class="step-t">Upload your resume once</div><div class="step-b">Drag and drop on install. Aplyer learns your tone, achievements, and writing style. Add writing samples for even better accuracy. Never upload again. Your voice memory starts building immediately.</div></div>
+          <div class="step-box"><div class="step-n">2 / DETECT</div><div class="step-t">Activates automatically, you never leave the page</div><div class="step-b">Find the job on LinkedIn, Indeed, or any job board. Click apply. When the application page loads, Aplyer activates automatically on Workday, Greenhouse, and Lever. No switching to another app. No copying and pasting. You stay on the job page the entire time. More platforms being added.</div></div>
+          <div class="step-box"><div class="step-n">3 / APPLY</div><div class="step-t">Every question answered. Every field filled.</div><div class="step-b">Application questions get answers in your voice using your resume. Standard fields like name, address, and work history fill automatically. Review everything, edit anything, hit submit.</div></div>
+        </div>
+        <div class="ans-body" style="margin-bottom:10px;">After generating each answer, Aplyer checks it against an independent AI detector, the kind sold to recruiters and hiring managers, and shows you a Human Score. The higher the score, the more your answer reads like you wrote it. You review everything before it submits. You are always in control.</div>
+      </div>
+    </div>
+    <div class="q-block-foot"></div>
+  </div>
+</div>
+<div class="q-section f5">
+  <div class="q-block">
+    <div class="q-label"><span class="q-num">Q.2</span><h2 class="q-text">Why should we <span class="grn">hire</span> Aplyer and you?</h2></div>
+    <div style="padding:0 32px">
+      <div class="q-answer">
+        <div class="ans-body">Aplyer reads the job description alongside your resume and writing samples when generating answers. It pulls the specific keywords, required skills, and language the employer used in the job posting and weaves them into your answers. This is how you get through ATS screening. The system is looking for exact keyword matches from the job description. A generic answer about leadership that does not use the employer's specific language scores poorly. An answer that mirrors their terminology scores highly. <span class="highlight">Aplyer does both simultaneously, it sounds like you and it speaks the language of that specific job.</span><br><br>Every application is logged automatically so you always know what was sent, can review every answer, and build a library of your strongest responses over time, as shown below.</div>
+        <div class="tracker-mini">
+          <div class="t-head"><span class="t-title">My Applications</span><div class="t-badges"><span class="tbadge tbadge-g">3 Submitted</span><span class="tbadge tbadge-r">1 Skipped</span></div></div>
+          <div class="t-row"><div class="t-ico t-ico-g">✓</div><div style="flex:1;min-width:0"><div class="t-name">Stripe</div><div class="t-role">Senior Product Manager · 3 application questions filled by Aplyer</div></div><div class="t-date">Today</div></div>
+          <div class="t-row"><div class="t-ico t-ico-g">✓</div><div style="flex:1;min-width:0"><div class="t-name">HubSpot</div><div class="t-role">Marketing Director · 2 application questions filled by Aplyer</div></div><div class="t-date">Yesterday</div></div>
+          <div class="t-row"><div class="t-ico t-ico-g">✓</div><div style="flex:1;min-width:0"><div class="t-name">Salesforce</div><div class="t-role">VP Sales Operations · 2 application questions filled by Aplyer</div></div><div class="t-date">May 22</div></div>
+          <div class="t-row"><div class="t-ico t-ico-r">✕</div><div style="flex:1;min-width:0"><div class="t-name">Meta</div><div class="t-role" style="color:var(--red)">Product Lead · Skipped by candidate before opening Aplyer, 3 application questions left blank</div></div><div class="t-date">May 21</div></div>
+        </div>
+        <div class="ans-body" style="margin-top:12px;"><span class="highlight">Don't just apply. Apply like an A‑player.</span> Aplyer solves your application questions problem and autofills the easy fields too. Every answer in your voice, in the language a recruiter would use. A full application in under two minutes. Send more applications, every one sounding like you.</div>
+      </div>
+    </div>
+    <div class="q-block-foot"></div>
+  </div>
+
+
+</div>
+
+<div style="padding:0 24px;max-width:1100px;margin:0 auto;">
+  <div class="specs-row">
+    <div class="field-mini" style="text-align:center;"><label>Status</label><div class="val green">&#9679; Early Access Open</div></div>
+    <div class="field-mini" style="text-align:center;"><label>Works on</label><div class="val">Works on Workday, Greenhouse, and Lever. Apply from LinkedIn, Indeed, or anywhere. More being added.</div></div>
+    <div class="field-mini" style="text-align:center;"><label>Requires</label><div class="val">Google Chrome</div></div>
+    <div class="field-mini" style="text-align:center;"><label>Pricing</label><div class="val">Free tier · $19 a month for founding members</div></div>
+  </div>
+</div>
+<!-- FAQ Section -->
+<div class="q-section" style="margin-top:48px;margin-bottom:48px;">
+  <div style="background:#F5F7FA;border-radius:16px;border:1px solid rgba(0,0,0,0.08);overflow:hidden;">
+    <div onclick="toggleFAQ()" style="display:flex;align-items:center;justify-content:space-between;padding:24px 32px;cursor:pointer;user-select:none;">
+      <span style="font-family:'Lato',sans-serif;font-weight:700;font-size:18px;color:#0D1829;">Frequently Asked Questions</span>
+      <span id="faq-icon" style="font-size:24px;color:#1DB954;font-weight:700;line-height:1;">+</span>
+    </div>
+    <div id="faq-body" style="display:none;padding:0 32px 24px;">
+
+      <!-- Q1 -->
+      <div style="border-top:1px solid rgba(0,0,0,0.08);padding:20px 0;">
+        <div onclick="toggleFAQItem(this)" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;">
+          <span style="font-family:'Lato',sans-serif;font-weight:700;font-size:16px;color:#0D1829;">Is this AI?</span>
+          <span style="font-size:20px;color:#1DB954;font-weight:700;min-width:20px;text-align:center;">+</span>
+        </div>
+        <div class="faq-answer" style="display:none;padding-top:12px;font-family:'Lato',sans-serif;font-size:15px;color:#333333;line-height:1.7;">Yes, Aplyer is powered by AI. But it is not generic AI. Aplyer uses WriteDNA Technology to learn how you specifically write from your resume and your own words. Every answer is unique to you because it is built from your voice, your experience, and your writing style. The result is an answer that reads like you sat down and wrote it yourself.</div>
+      </div>
+
+      <!-- Q2 -->
+      <div style="border-top:1px solid rgba(0,0,0,0.08);padding:20px 0;">
+        <div onclick="toggleFAQItem(this)" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;">
+          <span style="font-family:'Lato',sans-serif;font-weight:700;font-size:16px;color:#0D1829;">Is this like ChatGPT?</span>
+          <span style="font-size:20px;color:#1DB954;font-weight:700;min-width:20px;text-align:center;">+</span>
+        </div>
+        <div class="faq-answer" style="display:none;padding-top:12px;font-family:'Lato',sans-serif;font-size:15px;color:#333333;line-height:1.7;">No. ChatGPT gives everyone the same generic output from the same prompt. Aplyer uses WriteDNA Technology, our own proprietary system built specifically for job applications. It learns how you specifically write from your resume and your own words, which means every answer is different for every candidate. You cannot replicate this by opening ChatGPT and typing a prompt.</div>
+      </div>
+
+      <!-- Q3 -->
+      <div style="border-top:1px solid rgba(0,0,0,0.08);padding:20px 0;">
+        <div onclick="toggleFAQItem(this)" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;">
+          <span style="font-family:'Lato',sans-serif;font-weight:700;font-size:16px;color:#0D1829;">Will it get flagged?</span>
+          <span style="font-size:20px;color:#1DB954;font-weight:700;min-width:20px;text-align:center;">+</span>
+        </div>
+        <div class="faq-answer" style="display:none;padding-top:12px;font-family:'Lato',sans-serif;font-size:15px;color:#333333;line-height:1.7;">No. WriteDNA Technology writes each answer the way you would naturally type it, not copied and pasted from a chatbot. Every answer is verified against an independent AI detector before you see it. You review everything and can edit anything before submitting. Every application is in your hands.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleFAQ() {
+  var body = document.getElementById('faq-body');
+  var icon = document.getElementById('faq-icon');
+  var open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  icon.textContent = open ? '+' : '−';
+}
+function toggleFAQItem(header) {
+  var answer = header.nextElementSibling;
+  var icon = header.querySelector('span:last-child');
+  var open = answer.style.display !== 'none';
+  answer.style.display = open ? 'none' : 'block';
+  icon.textContent = open ? '+' : '−';
+}
+</script>
+
+
+
+
+<div class="sbs" style="padding-bottom:0;">
+  <div class="sbs-card" style="padding:34px 40px;text-align:center;">
+    <h2 class="sbs-h">Ready to stop skipping?</h2>
+    <p class="sbs-sub" style="color:#333333;font-weight:400;font-size:17px;">Aplyer is in development. Join the waitlist and you will be told the launch date before anything starts.</p>
+    <div class="hero-ctas"><a class="hero-btn hero-btn-primary" href="index.html#waitlist-form">Join the Waitlist</a><a class="hero-btn hero-btn-secondary" href="pricing.html">See pricing</a></div>
+  </div>
+</div>
+
+
+<footer>
+  <div class="foot-inner">
+    <span class="foot-powered">Powered by WriteDNA Technology</span>
+    <div class="foot-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </div>
+    <span class="foot-slogan">Stop Skipping Jobs</span>
+  </div>
+</footer>
+
+
+</body>
+</html>
